@@ -4,8 +4,10 @@
 - シンプルなhtml, js, cssから成り、GitHub Pagesでもローカルでそのまま動作可能です。
 - （問題は生成AIに作ってもらったので不正確かもしれません。すみません）
 
-## 経緯
-- 「[Amazon Q CLI でゲームを作ろう Tシャツキャンペーン](https://aws.amazon.com/jp/blogs/news/build-games-with-amazon-q-cli-and-score-a-t-shirt/)」
+## 関連情報
+- このクイズアプリの公開先 → [https://tsukimi-site.github.io/aws_quiz_game/](https://tsukimi-site.github.io/aws_quiz_game/)
+- 技術ブログ → [Amazon Q CLIにAWS認定資格試験のクイズアプリを作ってもらった](https://zenn.dev/tsukimi_site/articles/aws_llm_q_quiz_game)
+- [Amazon Q CLI でゲームを作ろう Tシャツキャンペーン](https://aws.amazon.com/jp/blogs/news/build-games-with-amazon-q-cli-and-score-a-t-shirt/)
 
 ## 🎯 特徴
 
