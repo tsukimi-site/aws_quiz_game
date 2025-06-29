@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified AI Practitioner – AIF-C01
+  question_number: 5
+
+questions:
+- id: 1
+  title: Amazon Bedrock の役割
+  text: Amazon Bedrock が提供する中核的な機能はどれですか？
+  choices:
+    - フルマネージドな基盤モデル (FM) への統一 API 提供
+    - IoT デバイスのプロビジョニング
+    - GPU インスタンスの自動スケーリングのみ
+    - S3 のオブジェクトライフサイクル管理
+  answer: フルマネージドな基盤モデル (FM) への統一 API 提供
+  explanation: Bedrock は複数ベンダーの FM をサーバーレスで呼び出し、独自データでのカスタマイズや RAG、エージェント構築を容易にします。 
+
+- id: 2
+  title: Guardrails for Bedrock
+  text: 生成 AI 出力の不適切表現や個人情報流出を抑止するために Bedrock で利用する機能は？
+  choices:
+    - Guardrails for Bedrock
+    - IAM ポリシーのみ
+    - AWS WAF レート制限
+    - Macie の機密検出
+  answer: Guardrails for Bedrock
+  explanation: Guardrails はプロンプトとレスポンス双方に適用でき、多用途アプリ間で一貫した安全基準を維持します。 
+
+- id: 3
+  title: Titan モデルの種類
+  text: Amazon Titan Image Generator G1 V1 は次のどの用途に分類されますか？
+  choices:
+    - テキスト生成モデル
+    - 画像生成モデル
+    - 音声認識モデル
+    - タイムシリーズ予測モデル
+  answer: 画像生成モデル
+  explanation: Titan ファミリーには画像生成 (G1 Image) のほか、テキスト・埋め込みモデルが含まれます。 
+
+- id: 4
+  title: SageMaker JumpStart の特徴
+  text: SageMaker JumpStart が提供する主な価値は次のうちどれですか？
+  choices:
+    - 事前学習済みモデルとソリューションテンプレート
+    - GPU インスタンスの 50% 割引
+    - VPC ルートテーブル自動生成
+    - オンプレ機械学習サーバー管理
+  answer: 事前学習済みモデルとソリューションテンプレート
+  explanation: JumpStart は OSS モデルや基盤モデルをワンクリックでデプロイできるテンプレートを提供します。 
+
+- id: 5
+  title: CodeWhisperer のセキュリティ機能
+  text: Amazon CodeWhisperer (Amazon Q Developer) が開発者に提示する追加機能は？
+  choices:
+    - コード脆弱性スキャンと修正提案
+    - CloudFormation テンプレート自動生成のみ
+    - IAM ロール自動プロビジョニング
+    - EKS クラスター自動チューニング
+  answer: コード脆弱性スキャンと修正提案
+  explanation: Q Developer にはインライン生成に加え、OWASP などの脆弱性検出とリメディエーション提案が統合されています。 
+
+- id: 6
+  title: Amazon Transcribe の用途
+  text: Amazon Transcribe が提供する基本機能はどれですか？
+  choices:
+    - 音声をテキストに変換
+    - 画像のラベリング
+    - テキスト翻訳
+    - SQL クエリ自動生成
+  answer: 音声をテキストに変換
+  explanation: Transcribe はバッチとストリーミングで音声をテキスト起こしし、話者分離やキーワードフィルタリングも可能です。 
+
+- id: 7
+  title: Comprehend の感情分析
+  text: ブログコメントのポジティブ／ネガティブ判定に最適なサービスは？
+  choices:
+    - Amazon Comprehend
+    - Amazon Rekognition
+    - Amazon Kendra
+    - AWS Glue
+  answer: Amazon Comprehend
+  explanation: Comprehend は主要言語でドキュメント感情 (Positive/Negative/Neutral/Mixed) を返します。 
+
+- id: 8
+  title: Rekognition の顔分析
+  text: Rekognition が画像内の人物について返す属性に**含まれない**のは？
+  choices:
+    - 感情 (HAPPY など)
+    - メガネ着用の有無
+    - 年齢の推定
+    - 翻訳された氏名
+  answer: 翻訳された氏名
+  explanation: Rekognition はランドマークや表情などのメタデータを返しますが、氏名までは提供しません。 
+
+- id: 9
+  title: Amazon Kendra の検索方式
+  text: Amazon Kendra が従来検索より高精度を実現する主な技術は？
+  choices:
+    - セマンティック・コンテキスト検索
+    - 単純なキーワード一致のみ
+    - ページランクのみ
+    - 手動メタデータタグ付けのみ
+  answer: セマンティック・コンテキスト検索
+  explanation: Kendra は深層学習に基づくセマンティック検索で関連文書をランキングします。 
+
+- id: 10
+  title: Data Wrangler の役割
+  text: SageMaker Data Wrangler が機械学習パイプラインにもたらす利点は？
+  choices:
+    - コードレスで前処理・特徴量エンジニアリングを一括管理
+    - GPU 推論高速化
+    - VPC ピアリング自動設定
+    - DynamoDB テーブルスキーマ設計
+  answer: コードレスで前処理・特徴量エンジニアリングを一括管理
+  explanation: Data Wrangler は 40+ データソース取込・変換・可視化を GUI で実行し、Flow をパイプライン化できます。 
+
+- id: 11
+  title: Redshift ML の学習基盤
+  text: Amazon Redshift ML がモデル学習時に裏側で利用するサービスは？
+  choices:
+    - Amazon SageMaker Autopilot
+    - AWS Batch
+    - AWS Lambda
+    - Amazon EMR
+  answer: Amazon SageMaker Autopilot
+  explanation: Redshift ML は CREATE MODEL 実行時にデータを S3 にエクスポートし、SageMaker Autopilot で最適モデルをトレーニングします。 
+
+- id: 12
+  title: Textract の抽出機能
+  text: Amazon Textract が Document Analysis API で抽出できる構造化要素に**該当しない**のは？
+  choices:
+    - テーブル
+    - フォームのキーバリュー
+    - 署名
+    - 音声トランスクリプト
+  answer: 音声トランスクリプト
+  explanation: Textract はテキスト・フォーム・テーブル・署名を抽出しますが音声には対応しません。 
+
+- id: 13
+  title: Personalize のデータセット要件
+  text: Amazon Personalize で一般的なレコメンドを行う最低限のデータセット構成は？
+  choices:
+    - ユーザー、アイテム、インタラクション履歴
+    - 画像データのみ
+    - タイムシリーズと予測値
+    - 音声コマンドログ
+  answer: ユーザー、アイテム、インタラクション履歴
+  explanation: Personalize では 3 種の CSV/JSON を S3 に用意しスキーマ定義後インポートします。 
+
+- id: 14
+  title: Amazon Lex のスケーリング
+  text: モバイル・Web・チャットサービスに展開するボットで、インフラ管理なく自動スケールするサービスは？
+  choices:
+    - Amazon Lex
+    - Amazon Connect
+    - Amazon SES
+    - Amazon Pinpoint
+  answer: Amazon Lex
+  explanation: Lex は Alexa と同技術を用いた音声・テキストボットを自動スケールで提供します。 
+
+- id: 15
+  title: Polly の Neural TTS
+  text: Amazon Polly の Neural エンジン (NTTS) が向上させるのは？
+  choices:
+    - 音声自然度
+    - 画像解像度
+    - 翻訳精度
+    - GPU スループット
+  answer: 音声自然度
+  explanation: NTTS は従来のコーパス結合方式より滑らかな発話を生成します。 
+
+- id: 16
+  title: Amazon Translate の基本
+  text: Amazon Translate の主な用途は？
+  choices:
+    - テキストのリアルタイム機械翻訳
+    - 画像キャプション生成
+    - 動画分析
+    - フェイスマッチング
+  answer: テキストのリアルタイム機械翻訳
+  explanation: Translate はニューラル MT を用いてオンデマンドで高品質翻訳を提供します。 
+
+- id: 17
+  title: Amazon Forecast の特徴
+  text: Amazon Forecast はどの種類の問題を解決するためのサービスですか？
+  choices:
+    - 時系列予測
+    - 画像分類
+    - 自然言語要約
+    - 顔認識
+  answer: 時系列予測
+  explanation: Forecast は統計・機械学習アルゴリズムで需要やトラフィックを予測します。 
+
+- id: 18
+  title: SageMaker Feature Store の目的
+  text: Feature Store が提供する主な価値は？
+  choices:
+    - オンライン/オフライン両用の特徴量の一元管理
+    - Lambda 同時実行 10 倍
+    - S3 ストレージコスト削減
+    - IAM ロール自動生成
+  answer: オンライン/オフライン両用の特徴量の一元管理
+  explanation: Feature Store は低レイテンシのオンラインストアと分析向けオフラインストアを提供し、再利用性を高めます。 
+
+- id: 19
+  title: SageMaker Clarify の機能
+  text: Clarify が提供する 2 つの主要機能は？
+  choices:
+    - バイアス検出と説明可能性 (SHAP)
+    - GPU 監視とコスト最適化
+    - S3 暗号化とキー管理
+    - リアルタイム音声翻訳
+  answer: バイアス検出と説明可能性 (SHAP)
+  explanation: Clarify はデータ/モデルバイアス評価と SHAP による特徴量寄与度解析を実施します。 
+
+- id: 20
+  title: Bedrock Agents の役割
+  text: Amazon Bedrock Agents がアプリケーションで果たす役割は？
+  choices:
+    - FM・データソース・API をオーケストレーションしユーザータスクを自動実行
+    - EC2 の AMI 自動パッチ適用
+    - RDS スケールアップの自動実行
+    - IAM ポリシーの自動生成
+  answer: FM・データソース・API をオーケストレーションしユーザータスクを自動実行
+  explanation: Bedrock Agents はアクショングループや知識ベースを介して API 呼び出しと対話を連携します。 

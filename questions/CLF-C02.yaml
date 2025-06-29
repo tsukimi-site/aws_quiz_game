@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Cloud Practitioner – CLF-C02
+  question_number: 5
+
+questions:
+- id: 1
+  title: 共有責任モデルの境界
+  text: AWS の共有責任モデルで「物理施設のセキュリティ」を担うのは誰ですか？
+  choices:
+    - お客様
+    - AWS
+    - AWS とお客様の共同
+    - 外部監査機関
+  answer: AWS
+  explanation: AWS はデータセンターの物理セキュリティとハイパーバイザーなどインフラ層を管理します。
+
+- id: 2
+  title: S3 ストレージクラスの選択
+  text: 「アクセス頻度は低いがミリ秒レイテンシで即時取り出しが必要」な場合に推奨される S3 ストレージクラスは？
+  choices:
+    - S3 Standard
+    - S3 Standard-IA
+    - S3 One Zone-IA
+    - S3 Glacier Deep Archive
+  answer: S3 Standard-IA
+  explanation: Standard-IA は長期保管・低頻度アクセス向けで、ミリ秒アクセスを維持しつつコストを抑えます。
+
+- id: 3
+  title: コスト可視化ツール
+  text: 過去 13 か月の利用状況をグラフで分析でき、翌 12 か月のコスト予測も表示できるサービスは？
+  choices:
+    - AWS Budgets
+    - AWS Cost Explorer
+    - AWS Cost and Usage Report
+    - AWS Pricing Calculator
+  answer: AWS Cost Explorer
+  explanation: Cost Explorer はインタラクティブグラフと予測モデルを提供します。
+
+- id: 4
+  title: 高可用データベース設計
+  text: プロダクション RDS を単一リージョン内で高可用にする最も一般的な構成は？
+  choices:
+    - マルチ-AZ 配置
+    - リードレプリカのみ
+    - スナップショットを別リージョンへコピー
+    - クロスリージョンリードレプリカ
+  answer: マルチ-AZ 配置
+  explanation: マルチ-AZ はスタンバイインスタンスへの自動フェイルオーバーを提供します。
+
+- id: 5
+  title: 低レイテンシ配信
+  text: 静的・動的コンテンツを世界中のエッジロケーションから配信してレイテンシを最小化するサービスは？
+  choices:
+    - Amazon CloudFront
+    - AWS Global Accelerator
+    - Amazon Route 53
+    - AWS Direct Connect
+  answer: Amazon CloudFront
+  explanation: CloudFront はグローバル CDN で数百 Tbps の容量を有します。
+
+- id: 6
+  title: フェデレーション認証
+  text: 社内 IdP から SAML 2.0 を用いて AWS リソースへ一時的にアクセスする際に設定するのは？
+  choices:
+    - IAM ロールと SAML プロバイダー
+    - IAM ユーザーに長期アクセスキー
+    - Amazon Cognito ID プール
+    - AWS SSO の OIDC
+  answer: IAM ロールと SAML プロバイダー
+  explanation: SAML フェデレーションでは IdP を IAM に登録し、信頼されたロールを AssumeRoleWithSAML で取得します。
+
+- id: 7
+  title: 大量メール送信
+  text: ターゲット広告メールを安価に大量送信したい場合に最適な AWS サービスは？
+  choices:
+    - Amazon Simple Email Service (SES)
+    - Amazon Simple Notification Service (SNS)
+    - Amazon Simple Queue Service (SQS)
+    - Amazon WorkMail
+  answer: Amazon Simple Email Service (SES)
+  explanation: SES は高い到達率と従量課金でスケールするメールプラットフォームです。
+
+- id: 8
+  title: EC2 詳細モニタリング
+  text: EC2 インスタンスで詳細モニタリングを有効にした場合、CloudWatch メトリクスの最小粒度は？
+  choices:
+    - 1 分
+    - 5 分
+    - 30 秒
+    - 10 秒
+  answer: 1 分
+  explanation: 詳細モニタリングでは 1 分間隔のメトリクスが取得できます（標準は 5 分）。
+
+- id: 9
+  title: コストアラート
+  text: 利用料金が設定した閾値に近づいた際にメール通知を送る機能を提供するサービスは？
+  choices:
+    - AWS Budgets
+    - AWS Cost Explorer
+    - AWS Marketplace Subscriptions
+    - AWS Billing Dashboard
+  answer: AWS Budgets
+  explanation: Budgets はコスト・使用量・ RI/SP 利用率などのアラートを設定可能です。
+
+- id: 10
+  title: エンタープライズサポート
+  text: 専任のテクニカルアカウントマネージャー (TAM) が提供される AWS サポートプランは？
+  choices:
+    - Developer
+    - Business
+    - Enterprise On-Ramp
+    - Enterprise
+  answer: Enterprise
+  explanation: Enterprise プランでは TAM による運用レビューやコスト最適化支援が含まれます。
+
+- id: 11
+  title: サーバーレス NoSQL
+  text: シームレスなスケーリングとミリ秒レイテンシを提供するフルマネージド NoSQL キー・バリューストアは？
+  choices:
+    - Amazon DynamoDB
+    - Amazon ElastiCache (Redis)
+    - Amazon DocumentDB
+    - Amazon Neptune
+  answer: Amazon DynamoDB
+  explanation: DynamoDB はパーティション自動分割で高スループットを維持します。
+
+- id: 12
+  title: イベント統合
+  text: SaaS アプリと AWS サービスのイベントを統合しターゲットへルーティングするサービスは？
+  choices:
+    - Amazon EventBridge
+    - Amazon Kinesis Data Streams
+    - AWS Step Functions
+    - Amazon MQ
+  answer: Amazon EventBridge
+  explanation: EventBridge は少なくとも 1 回の配信と 24 時間リトライを保証します。
+
+- id: 13
+  title: クロスリージョンバックアップ
+  text: 規制対応でバックアップを別リージョンへ自動コピーしたい。最もシンプルな方法は？
+  choices:
+    - AWS Backup プランでクロスリージョンコピーを設定
+    - S3 バケットレプリケーション
+    - Lambda でスナップショットコピーを自動化
+    - DataSync で転送
+  answer: AWS Backup プランでクロスリージョンコピーを設定
+  explanation: AWS Backup のポリシーにコピー先リージョンを追加するだけで自動化できます。
+
+- id: 14
+  title: 機密データ検出
+  text: S3 内の PII を機械学習で検出しダッシュボード表示できるサービスは？
+  choices:
+    - Amazon Macie
+    - Amazon Inspector
+    - AWS GuardDuty
+    - AWS Config
+  answer: Amazon Macie
+  explanation: Macie は定義済み識別子と ML を使いクレジットカード番号や住所などを検出します。
+
+- id: 15
+  title: ネットワーク ACL の特徴
+  text: VPC の Network ACL が「ステートレス」であるという説明として正しいのは？
+  choices:
+    - 返信トラフィックも個別に許可ルールが必要
+    - 一度許可するとすべての戻り通信が自動許可
+    - SG と同様にインスタンス単位で適用
+    - ルールは優先度ではなく作成順で評価
+  answer: 返信トラフィックも個別に許可ルールが必要
+  explanation: Network ACL はステートを持たず戻りパケットも明示的に許可する必要があります。
+
+- id: 16
+  title: Lambda 課金単位
+  text: Lambda の実行コストはどの単位で課金されますか？
+  choices:
+    - リクエスト数と GB-秒
+    - vCPU-時間
+    - 常時稼働時間
+    - コンテナ数
+  answer: リクエスト数と GB-秒
+  explanation: 実行回数と実行時間×メモリサイズ (GB-秒) に基づき課金されます。
+
+- id: 17
+  title: サーバーレス SQL
+  text: Amazon S3 上のデータに直接 SQL を実行できるサービスは？
+  choices:
+    - Amazon Athena
+    - Amazon Redshift
+    - AWS Glue ETL
+    - Amazon EMR
+  answer: Amazon Athena
+  explanation: Athena はサーバーレスで、クエリごとに料金が発生します。
+
+- id: 18
+  title: 個人化レコメンド
+  text: 行動履歴からリアルタイムに商品レコメンドを生成するマネージド AI サービスは？
+  choices:
+    - Amazon Personalize
+    - Amazon Forecast
+    - Amazon Rekognition
+    - Amazon Textract
+  answer: Amazon Personalize
+  explanation: Personalize はユーザー・アイテム・インタラクションを学習し推論エンドポイントを提供します。
+
+- id: 19
+  title: RTO の定義
+  text: DR 計画で用いられる RTO (Recovery Time Objective) の意味は？
+  choices:
+    - サービスを再開するまでの許容停止時間
+    - 許容データ損失量
+    - 年間稼働率
+    - 障害発生確率
+  answer: サービスを再開するまでの許容停止時間
+  explanation: RTO は業務再開に要しても許容される最大時間を示します。
+
+- id: 20
+  title: Trusted Advisor のチェックカテゴリー
+  text: Trusted Advisor が提供する 5 つの主要チェックカテゴリに **含まれない** のはどれ？
+  choices:
+    - 運用サポート
+    - コスト最適化
+    - パフォーマンス
+    - セキュリティ
+  answer: 運用サポート
+  explanation: Trusted Advisor のカテゴリはコスト、セキュリティ、パフォーマンス、フォールトトレランス、サービス制限です。

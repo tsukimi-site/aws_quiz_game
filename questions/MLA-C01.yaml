@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Machine Learning Engineer – Associate – MLA-C01
+  question_number: 4
+
+questions:
+- id: 1
+  title: パイプラインのモデル登録ステップ
+  text: SageMaker Pipelines でトレーニング済みモデルをモデルレジストリに登録する専用ステップはどれですか？
+  choices:
+    - TrainingStep
+    - ProcessingStep
+    - ModelStep
+    - CallbackStep
+  answer: ModelStep
+  explanation: ModelStep は学習済み Model または PipelineModel を SageMaker Model Registry に登録するために使用します。 
+
+- id: 2
+  title: Model Monitor ベースライン
+  text: リアルタイムエンドポイントでモデルドリフトを検出する前に必要な初期タスクは？
+  choices:
+    - スケジュールジョブの作成より先にバイアス・データドリフトのベースラインを作成する
+    - CloudWatch メトリクスを有効化する
+    - Endpoint をマルチモデル化する
+    - Neo でコンパイルする
+  answer: スケジュールジョブの作成より先にバイアス・データドリフトのベースラインを作成する
+  explanation: Model Monitor では最初に基準統計を算出するベースラインジョブを実行してからスケジュールジョブを設定します。 
+
+- id: 3
+  title: Clarify バイアス検出フェーズ
+  text: SageMaker Clarify において「Pre-training」と「Post-training」の違いで最も正しい説明は？
+  choices:
+    - 前者は生データのバイアス、後者はモデル出力のバイアスを測定する
+    - 前者は推論レイテンシ、後者はトレーニング時間を測定する
+    - 前者は GPU 使用率、後者は CPU 使用率を測定する
+    - 両者とも同じ指標を測定し違いはない
+  answer: 前者は生データのバイアス、後者はモデル出力のバイアスを測定する
+  explanation: Clarify は学習前データと学習後予測結果に対して 11 種のバイアス指標を個別に算出します。 
+
+- id: 4
+  title: 自動モデルチューニング戦略
+  text: Automatic Model Tuning がハイパーパラメータ探索に採用するデフォルトアルゴリズムは？
+  choices:
+    - ベイズ最適化
+    - グリッドサーチ
+    - 遺伝的アルゴリズム
+    - 強化学習
+  answer: ベイズ最適化
+  explanation: SageMaker のチューニングは既定でベイズ最適化を用い、過去ジョブの結果を踏まえて次の候補を選択します。 
+
+- id: 5
+  title: Feature Store オンライン vs オフライン
+  text: オンラインストアとオフラインストアの主な使い分けは？
+  choices:
+    - 前者はリアルタイム推論、後者はバッチ学習や再トレーニング用
+    - 前者は長期保持、後者は最新のみ保持
+    - 両者とも同じ用途
+    - 前者は無料、後者は有料
+  answer: 前者はリアルタイム推論、後者はバッチ学習や再トレーニング用
+  explanation: オンラインストアは低レイテンシ取得、オフラインストアは完全履歴を保持して分析に利用されます。 
+
+- id: 6
+  title: Feature Store データ保持
+  text: オンラインストアが保持するレコードは通常どのような形ですか？
+  choices:
+    - 最新レコードのみ
+    - 全ての履歴
+    - ランダムサンプリング
+    - 集約統計値
+  answer: 最新レコードのみ
+  explanation: オンラインストアは最新状態のみを保持し、履歴はオフラインストアに保存されます。 
+
+- id: 7
+  title: マルチモデルエンドポイントの適用
+  text: マルチモデルエンドポイントが最もコスト効率を発揮する状況は？
+  choices:
+    - 同一フレームワークの多数モデルでアクセス頻度がばらつく場合
+    - GPU 使用率が常に 100 % の高負荷モデルのみをデプロイする場合
+    - 単一巨大モデルで最小レイテンシを求める場合
+    - モデルごとに異なるコンテナが必要な場合
+  answer: 同一フレームワークの多数モデルでアクセス頻度がばらつく場合
+  explanation: マルチモデルエンドポイントはリソースを共有し、コールドスタート許容のワークロードで大幅なコスト削減を可能にします。 
+
+- id: 8
+  title: Managed Spot Training のコスト削減
+  text: Managed Spot Training を有効化するとオンデマンド比で最大何 % のコスト削減が期待できますか？
+  choices:
+    - 90 %
+    - 50 %
+    - 25 %
+    - 10 %
+  answer: 90 %
+  explanation: 公式ドキュメントでは最大 90 % まで学習コストを削減できると明記されています。 
+
+- id: 9
+  title: Pipe モードの利点
+  text: SageMaker トレーニングで Pipe モードを選択する主要な利点は？
+  choices:
+    - S3 からデータをストリーミングしジョブ開始時間とスループットを改善する
+    - データをローカルに完全コピーし障害耐性を高める
+    - GPU メモリを節約できる
+    - モデルサイズを圧縮できる
+  answer: S3 からデータをストリーミングしジョブ開始時間とスループットを改善する
+  explanation: Pipe モードはデータをコンテナへストリームし、起動を高速化してストレージ消費も抑えます。 
+
+- id: 10
+  title: Debugger ルールの役割
+  text: SageMaker Debugger の **built-in rules** が提供する主な価値は？
+  choices:
+    - トレーニング中テンソルやシステムメトリクスを監視し異常を自動検出する
+    - 学習データを自動ラベル付けする
+    - モデルを自動的にデプロイする
+    - コストレポートを生成する
+  answer: トレーニング中テンソルやシステムメトリクスを監視し異常を自動検出する
+  explanation: Debugger は勾配消失やリソースボトルネックなどをルールで検知し、早期対応を支援します。 
+
+- id: 11
+  title: SageMaker Neo のサポート範囲
+  text: Neo がクラウドとエッジ向け最適化をサポートする主要フレームワークに **含まれない** ものは？
+  choices:
+    - Scikit-learn
+    - TensorFlow
+    - PyTorch
+    - MXNet
+  answer: Scikit-learn
+  explanation: Neo は TensorFlow、PyTorch、MXNet などの DL フレームワークを対象とし、Scikit-learn は直接サポートされていません。 
+
+- id: 12
+  title: Ground Truth 自動ラベル付け
+  text: Amazon SageMaker Ground Truth の「Auto-labeling」が活用する ML 技法は？
+  choices:
+    - アクティブラーニング
+    - 強化学習
+    - 転移学習
+    - GAN
+  answer: アクティブラーニング
+  explanation: 難易度の高いサンプルのみを人に依頼し、コストと時間を削減するためにアクティブラーニングを使用しています。 
+
+- id: 13
+  title: Serverless Inference 課金
+  text: SageMaker Serverless Inference でユーザーが支払う課金対象は？
+  choices:
+    - リクエスト実行時間とメモリ (ms-GB)
+    - 常時稼働時間
+    - インスタンスタイプの月額固定費
+    - モデルサイズ
+  answer: リクエスト実行時間とメモリ (ms-GB)
+  explanation: Serverless Inference はリクエスト処理時のみ課金され、アイドルコストが発生しません。 
+
+- id: 14
+  title: Provisioned Concurrency の目的
+  text: Serverless Inference で Provisioned Concurrency を設定する主な目的は？
+  choices:
+    - スパイク時でも予測可能なレイテンシを提供する
+    - モデルサイズを圧縮する
+    - GPU 使用率を向上させる
+    - コストを常に最小化する
+  answer: スパイク時でも予測可能なレイテンシを提供する
+  explanation: Provisioned Concurrency はエンドポイントをウォームに保ち、コールドスタートを低減します。 
+
+- id: 15
+  title: ハイパーパラメータチューニング並列実行
+  text: ベイズ最適化で多数のトレーニングジョブを並列実行しすぎると探索効率が落ちる理由は？
+  choices:
+    - 後続ジョブが前回結果を学習に活用できないため
+    - GPU メモリが不足するため
+    - S3 リクエスト上限に達するため
+    - パラメータ空間が離散化されるため
+  answer: 後続ジョブが前回結果を学習に活用できないため
+  explanation: ベイズ最適化は逐次結果を使い最適化を進めるため、過度の並列化は効果を下げます。 
+
+- id: 16
+  title: Feature Store 同期動作
+  text: オンラインストアとオフラインストアを両方有効化した場合のデータ同期は？
+  choices:
+    - オンラインに書き込んだデータが自動でオフラインにも同期される
+    - 両ストアは独立し手動同期が必要
+    - オンラインのみ書き込み可能になる
+    - オフラインのみ読み取り可能になる
+  answer: オンラインに書き込んだデータが自動でオフラインにも同期される
+  explanation: 両ストアを有効化すると SageMaker が整合性を維持し、リアルタイムと履歴データの差異を防ぎます。 
+
+- id: 17
+  title: Shadow Testing の利点
+  text: Shadow テストを用いる主な利点は？
+  choices:
+    - 本番トラフィックをコピーして新モデルの挙動を安全に検証できる
+    - 学習データを自動生成できる
+    - 料金が常に無料になる
+    - GPU 温度を監視できる
+  answer: 本番トラフィックをコピーして新モデルの挙動を安全に検証できる
+  explanation: Shadow Deployment はユーザー影響なく新バージョンを長時間検証し、メトリクスが期待通りか確認できます。 
+
+- id: 18
+  title: Shadow Test のトラフィック割合
+  text: SageMaker のベストプラクティスでは昇格前にトラフィックサンプリング率を最終的に何 % まで引き上げることを推奨していますか？
+  choices:
+    - 100 %
+    - 50 %
+    - 10 %
+    - 25 %
+  answer: 100 %
+  explanation: 100 % トラフィックで安定性を確認してから本番昇格するのが推奨手順です。 
+
+- id: 19
+  title: Pipe モード適用理由
+  text: データセットが大容量で I/O バウンドの場合に Pipe モードが推奨される主な理由は？
+  choices:
+    - データをストリーミングしダウンロード時間とディスク容量を節約できる
+    - GPU 数を減らせる
+    - モデルサイズが小さくなる
+    - ログ出力が高速化する
+  answer: データをストリーミングしダウンロード時間とディスク容量を節約できる
+  explanation: Pipe モードは必要なデータのみを逐次読み込み、ディスクへの完全コピーを回避します。 
+
+- id: 20
+  title: Debugger ProfilerRule
+  text: "`ProfilerRule` の主目的は？"
+  choices:
+    - CPU/GPU 使用率や I/O ボトルネックを自動検出して警告する
+    - モデルを軽量化する
+    - 自動ハイパーパラメータ探索を行う
+    - データバイアスを測定する
+  answer: CPU/GPU 使用率や I/O ボトルネックを自動検出して警告する
+  explanation: ProfilerRule はシステムメトリクスを解析しスローダウンの原因やリソース不足を早期に特定します。 

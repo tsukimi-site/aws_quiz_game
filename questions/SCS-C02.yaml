@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Security – Specialty – SCS-C02
+  question_number: 4
+
+questions:
+- id: 1
+  title: MFA 強制に使う Condition キー
+  text: IAM ポリシーで多要素認証 (MFA) を必須にする際、Condition で使用するグローバルキーはどれですか？
+  choices:
+    - aws:MultiFactorAuthPresent
+    - aws:SecureTransport
+    - sts:ExternalId
+    - iam:PassedToService
+  answer: aws:MultiFactorAuthPresent
+  explanation: "`aws:MultiFactorAuthPresent` が true のリクエストだけ許可することで MFA を強制できます。 "
+
+- id: 2
+  title: Tor 経由の不正 API コール検出
+  text: GuardDuty で IAM 資格情報が Tor ネットワークから悪用された場合に発生する Finding タイプは？
+  choices:
+    - UnauthorizedAccess:IAMUser/TorIPCaller
+    - CryptoCurrency:EC2/BitcoinTool.B!DNS
+    - Recon:EC2/PortProbeUnprotectedPort
+    - PenTest:IAMUser/KaliLinux
+  answer: UnauthorizedAccess:IAMUser/TorIPCaller
+  explanation: Tor IP からの API コールを検出すると GuardDuty はこの IAM Finding を生成します。 
+
+- id: 3
+  title: CMK の自動ローテーション周期
+  text: Customer managed KMS キーで **Automatic key rotation** を有効にすると、新しい暗号鍵素材は何年ごとに生成されますか？
+  choices:
+    - 1 年
+    - 90 日
+    - 2 年
+    - ローテーション不可
+  answer: 1 年
+  explanation: 自動ローテーションを有効化すると、KMS が 365 日ごとに新しい素材を生成します。 
+
+- id: 4
+  title: Macie のクレジットカード検出
+  text: S3 に保存されたクレジットカード番号を検出する際に Macie が利用する仕組みは？
+  choices:
+    - Managed data identifier
+    - カスタム発見ルールのみ
+    - S3 Event Notification
+    - GuardDuty 統合
+  answer: Managed data identifier
+  explanation: Macie は金融情報向けなど 150 以上の Managed data identifier で機密データを判定します。 
+
+- id: 5
+  title: WORM 要件の実装
+  text: オブジェクトを **Write Once Read Many (WORM)** で保護し、管理者による削除・上書きを禁止する S3 機能は？
+  choices:
+    - Object Lock Compliance モード
+    - バージョニングのみ
+    - Glacier Instant Retrieval
+    - リクエストプレイサーバーサイド暗号化
+  answer: Object Lock Compliance モード
+  explanation: Compliance モードでは保持期間中、root でも変更できない WORM 保護が適用されます。 
+
+- id: 6
+  title: CloudTrail 改ざん検知
+  text: CloudTrail ログが改ざんされていないことを証明する AWS ネイティブ機能は？
+  choices:
+    - Log file integrity validation
+    - CloudTrail Lake
+    - CloudWatch Insights
+    - KMS 透過暗号化
+  answer: Log file integrity validation
+  explanation: SHA-256 ハッシュと RSA 署名で整合性を確認でき、CLI で検証可能です。 
+
+- id: 7
+  title: Security Hub の評価エンジン
+  text: Security Hub が大部分のコントロール評価に内部的に利用しているサービスは？
+  choices:
+    - AWS Config ルール
+    - Amazon Inspector
+    - AWS Shield
+    - Amazon Macie
+  answer: AWS Config ルール
+  explanation: Security Hub の CSPM 機能は AWS Config のルール結果を基にコンプライアンス判定を行います。 
+
+- id: 8
+  title: Access Analyzer 外部アクセス検出
+  text: IAM Access Analyzer が「外部アクセス」ファインディングを生成する条件は？
+  choices:
+    - ゾーンオブトラスト外の主体にリソースベースポリシーがアクセスを許可している
+    - VPC セキュリティグループが 0.0.0.0/0 を許可している
+    - CloudTrail が無効
+    - S3 バケットが暗号化されていない
+  answer: ゾーンオブトラスト外の主体にリソースベースポリシーがアクセスを許可している
+  explanation: Resource-based ポリシーが外部プリンシパルに権限を付与すると Access Analyzer が検出します。 
+
+- id: 9
+  title: Shield Advanced 自動保護
+  text: Shield Advanced 契約中、追加設定なしで自動的に保護対象となるサービスは？
+  choices:
+    - Amazon Route 53
+    - Amazon SQS
+    - Amazon OpenSearch Service
+    - AWS AppSync
+  answer: Amazon Route 53
+  explanation: Shield Advanced は CloudFront・ALB/NLB・Route 53 などを追加コストなく自動オンボードします。 
+
+- id: 10
+  title: Inspector と ECR 連携
+  text: Amazon Inspector の **Enhanced scanning** を有効にすると自動でスキャンされる対象は？
+  choices:
+    - Amazon ECR に push されたコンテナイメージ
+    - S3 バケットの PDF
+    - EC2 インスタンスのユーザーデータ
+    - IAM ポリシードキュメント
+  answer: Amazon ECR に push されたコンテナイメージ
+  explanation: Inspector は ECR リポジトリの OS/言語パッケージ脆弱性を push 時や定期でスキャンします。 
+
+- id: 11
+  title: Secrets Manager ローテーション
+  text: Secrets Manager で自動ローテーションを構成すると、シークレットの更新を実施するのは何ですか？
+  choices:
+    - Lambda 関数
+    - EC2 Systems Manager
+    - 手動 CLI 操作
+    - Kinesis Data Firehose
+  answer: Lambda 関数
+  explanation: ローテーションスケジュールに従い、Secrets Manager が指定の Lambda を呼び出します。 
+
+- id: 12
+  title: Session Manager の通信要件
+  text: Session Manager で EC2 に接続する際、**不要** となるネットワーク要素は？
+  choices:
+    - インバウンド SSH (22) ポート開放
+    - SSM Agent
+    - IAM ロール
+    - アウトバウンド HTTPS
+  answer: インバウンド SSH (22) ポート開放
+  explanation: Session Manager はアウトバウンド通信のみで接続でき、踏み台や公開ポートが不要です。 
+
+- id: 13
+  title: Flow Logs action フィールド
+  text: VPC Flow Logs の **action** フィールドで記録される代表的な値は？
+  choices:
+    - ACCEPT / REJECT
+    - ALLOW / DENY
+    - SUCCESS / FAILURE
+    - PASS / DROP
+  answer: ACCEPT / REJECT
+  explanation: パケットが SG/NACL で許可されたか拒否されたかを示す値として `ACCEPT` と `REJECT` が記録されます。 
+
+- id: 14
+  title: 組織全体のコンプライアンス適用
+  text: AWS Config で OU 全体に共通ルールと修復を展開する最も効率的な方法は？
+  choices:
+    - Organization Conformance Pack
+    - 個別アカウントでカスタムルール作成
+    - Trusted Advisor
+    - GuardDuty のみ
+  answer: Organization Conformance Pack
+  explanation: Organization Conformance Pack は StackSets を用いてルールと修復を組織全体に配布します。 
+
+- id: 15
+  title: Detective の調査機能
+  text: Detective が GuardDuty Findings を取り込みグラフ表示する主目的は？
+  choices:
+    - 関連エンティティを可視化して根本原因分析を容易にする
+    - メトリクスを 1 分粒度で収集
+    - 暗号化を自動で有効化
+    - IAM ポリシーを削減
+  answer: 関連エンティティを可視化して根本原因分析を容易にする
+  explanation: Detective は GuardDuty/FMS/Inspector などのイベントを行動グラフに統合し、攻撃経路を追跡します。 
+
+- id: 16
+  title: SQLi 攻撃用 AWS Managed WAF ルール
+  text: SQL インジェクションを防ぐために最小構成で適用できる AWS Managed Rule は？
+  choices:
+    - AWSManagedRulesSQLiRuleSet
+    - AWSManagedRulesCommonRuleSet
+    - AWSManagedRulesAnonymousIpList
+    - AWSManagedRulesLinuxRuleSet
+  answer: AWSManagedRulesSQLiRuleSet
+  explanation: SQLiRuleSet は SQL インジェクション特化シグネチャを提供し、追加設定なしで適用可能です。 
+
+- id: 17
+  title: AWS 管理キーのローテーション
+  text: "`aws/*` プレフィックスの AWS 管理 KMS キーはどのようにローテーションされますか？"
+  choices:
+    - 毎年自動ローテーションされ、ユーザー操作は不要
+    - 手動でのみローテーション可能
+    - 90 日ごとにローテーション
+    - ローテーションされない
+  answer: 毎年自動ローテーションされ、ユーザー操作は不要
+  explanation: AWS 管理キーは 1 年ごとに自動で新しいキー素材へ置き換わります。 
+
+- id: 18
+  title: External ID の目的
+  text: クロスアカウント AssumeRole で **External ID** を使用する主な理由は？
+  choices:
+    - Confused deputy 問題を防ぐ
+    - MFA をバイパスする
+    - STS トークンを永続化する
+    - SAML 認証を簡素化する
+  answer: Confused deputy 問題を防ぐ
+  explanation: 外部 ID により第三者が想定外のロールを乗っ取るリスク (confused deputy) を防止します。 
+
+- id: 19
+  title: EBS 既定暗号化
+  text: 新規作成される EBS ボリュームを常に暗号化するには、どの機能を有効化しますか？
+  choices:
+    - Enable EBS encryption by default
+    - KMS キーの自動ローテーション
+    - CloudTrail Lake
+    - S3 サーバサイド暗号化
+  answer: Enable EBS encryption by default
+  explanation: アカウント・リージョン単位で設定すると以後のボリューム/Snapshot は自動的に暗号化されます。 
+
+- id: 20
+  title: 暗号通貨マイニングの検出
+  text: EC2 インスタンスがマルウェアによって暗号通貨採掘に利用されている可能性を GuardDuty が検出した際の Finding タイプは？
+  choices:
+    - CryptoCurrency:EC2/BitcoinTool.B!DNS
+    - Trojan:EC2/BlackholeTraffic
+    - UnauthorizedAccess:IAMUser/TorIPCaller
+    - PenTest:IAMUser/KaliLinux
+  answer: CryptoCurrency:EC2/BitcoinTool.B!DNS
+  explanation: BitcoinTool.B 系の DNS クエリを検知し、マイニング活動を示唆する Finding を生成します。 

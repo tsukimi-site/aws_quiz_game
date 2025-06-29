@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- コース選択画面 -->
+        <div id="course-selection" class="screen active">
+            <header class="header">
+                <h1>🎯 AWS Quiz Game</h1>
+                <p class="subtitle">AWS資格試験の練習問題にチャレンジしよう！</p>
+            </header>
+            
+            <div class="course-grid" id="course-grid">
+                <!-- コース一覧がJavaScriptで動的に生成されます -->
+            </div>
+        </div>
+
+        <!-- クイズ画面 -->
+        <div id="quiz-screen" class="screen">
+            <header class="quiz-header">
+                <div class="quiz-info">
+                    <h2 id="course-title"></h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="question-counter">
+                        問題 <span id="current-question">1</span> / <span id="total-questions">10</span>
+                    </p>
+                </div>
+            </header>
+
+            <div class="quiz-content">
+                <div class="question-card">
+                    <h3 id="question-title"></h3>
+                    <p id="question-text"></p>
+                    <div id="question-image-container" class="question-image-container" style="display: none;">
+                        <img id="question-image" alt="問題図" />
+                    </div>
+                </div>
+
+                <div class="choices-container" id="choices-container">
+                    <!-- 選択肢がJavaScriptで動的に生成されます -->
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="submit-answer-button" class="btn btn-primary" disabled>回答する</button>
+                    <button id="next-button" class="btn btn-primary" style="display: none;">次の問題</button>
+                    <button id="finish-button" class="btn btn-success" style="display: none;">結果を見る</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen">
+            <header class="result-header">
+                <h2>🎉 クイズ結果</h2>
+            </header>
+
+            <div class="result-summary">
+                <div class="score-card">
+                    <div class="score-circle">
+                        <span id="score-percentage">0%</span>
+                    </div>
+                    <p class="score-text">
+                        <span id="correct-count">0</span> / <span id="total-count">0</span> 問正解
+                    </p>
+                </div>
+            </div>
+
+            <div class="result-details" id="result-details">
+                <!-- 詳細結果がJavaScriptで動的に生成されます -->
+            </div>
+
+            <div class="result-actions">
+                <button id="retry-button" class="btn btn-secondary">もう一度挑戦</button>
+                <button id="home-button" class="btn btn-primary">ホームに戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz_data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

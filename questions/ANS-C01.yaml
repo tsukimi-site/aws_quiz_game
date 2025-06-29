@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Advanced Networking – Specialty – ANS-C01
+  question_number: 4
+
+questions:
+- id: 1
+  title: VPC ピアリングの制限
+  text: VPC ピアリングが **サポートしない** ものはどれですか？
+  choices:
+    - トランジティブルーティング
+    - 同一リージョン接続
+    - 1 VPC あたり 125 接続
+    - セキュリティグループ参照
+  answer: トランジティブルーティング
+  explanation: VPC ピアリングはポイントツーポイント接続であり、経由 VPC への転送（トランジティブルーティング）は不可です。 
+
+- id: 2
+  title: Transit Gateway アタッチメント用サブネット
+  text: Transit Gateway を VPC にアタッチする際のベストプラクティスとして AWS が推奨するサブネット設計は？
+  choices:
+    - 各 AZ に /28 の専用サブネットを用意する
+    - 既存アプリケーション用サブネットを共有する
+    - /16 を割り当てる
+    - サブネットを作成しない
+  answer: 各 AZ に /28 の専用サブネットを用意する
+  explanation: 小さな CIDR の専用サブネットを使うことでアドレス枯渇を防ぎ、NACL を全開に保つ設計が推奨されています。 
+
+- id: 3
+  title: PrivateLink の基本構成
+  text: AWS PrivateLink でプライベート接続を実現する際に **必須** となるエンドポイントタイプは？
+  choices:
+    - インターフェイスエンドポイント
+    - ゲートウェイエンドポイント
+    - NAT Gateway
+    - Transit Gateway
+  answer: インターフェイスエンドポイント
+  explanation: PrivateLink は NLB を背後に持つサービスをインターフェイスエンドポイント経由で接続します。 
+
+- id: 4
+  title: Route 53 Resolver Inbound Endpoint
+  text: オンプレミス DNS から VPC 内リソース名を解決させたい場合に作成する Route 53 機能は？
+  choices:
+    - Resolver Inbound Endpoint
+    - Resolver Outbound Endpoint
+    - プライベートホストゾーンのみ
+    - エイリアスレコード
+  answer: Resolver Inbound Endpoint
+  explanation: オンプレミス → AWS 方向の名前解決は Inbound Endpoint で行います。 
+
+- id: 5
+  title: スプリットホライズン DNS
+  text: 同じドメイン名に対し内部と外部で異なる応答を返す設計は何と呼ばれますか？
+  choices:
+    - スプリットホライズン DNS
+    - ドメインシャーディング
+    - リバースプロキシ
+    - サブドメインテイクオーバー
+  answer: スプリットホライズン DNS
+  explanation: Route 53 ではプライベート／パブリックホストゾーンを組み合わせて split-view (split-horizon) DNS を構成できます。 
+
+- id: 6
+  title: Gateway Load Balancer の用途
+  text: サードパーティ製ファイアウォールをスケーラブルに挿入するために最適なロードバランサー種別は？
+  choices:
+    - Gateway Load Balancer
+    - Application Load Balancer
+    - Network Load Balancer
+    - Classic Load Balancer
+  answer: Gateway Load Balancer
+  explanation: GWLB は第 3 層でフロートラフィックを流し、アプライアンスを透過的に拡張・可用化できます。 
+
+- id: 7
+  title: IPv6 のアウトバウンド通信
+  text: IPv6-only サブネットからインターネットへの **アウトバウンド通信のみ** を許可する AWS リソースは？
+  choices:
+    - Egress-only Internet Gateway
+    - Internet Gateway
+    - NAT Gateway
+    - VPC エンドポイント
+  answer: Egress-only Internet Gateway
+  explanation: egress-only IGW は IPv6 版 NAT 的動作で、ステートフルに戻りトラフィックを許可します。 
+
+- id: 8
+  title: AWS Network Firewall の特徴
+  text: AWS Network Firewall が提供する **ステートフル** インスペクションルールはどの OSS ルール言語と互換がありますか？
+  choices:
+    - Suricata ルール
+    - Snort ルール
+    - iptables 形式
+    - OpenFlow
+  answer: Suricata ルール
+  explanation: ステートフルエンジンは Suricata ルールセット互換で高度なシグネチャベース検査を実装します。 
+
+- id: 9
+  title: Elastic Fabric Adapter (EFA)
+  text: MPI を用いる HPC アプリのレイテンシを劇的に低減するネットワークアダプタは？
+  choices:
+    - Elastic Fabric Adapter
+    - Elastic Network Adapter
+    - ENA Express
+    - SR-IOV VF
+  answer: Elastic Fabric Adapter
+  explanation: EFA は OS バイパスで数千ノードまでスケールし、オンプレ HPC 並みの性能を実現します。 
+
+- id: 10
+  title: Site-to-Site VPN の高可用性
+  text: AWS が推奨する **2 本のトンネル＋BGP** 構成を採用する主な理由は？
+  choices:
+    - トンネル障害時に自動フェイルオーバーできる
+    - 暗号化オーバーヘッドが減る
+    - 静的ルーティングのみ許可される
+    - NAT Traversal が不要になる
+  answer: トンネル障害時に自動フェイルオーバーできる
+  explanation: BGP により経路が自動切替わり、高可用 VPN を実現します。 
+
+- id: 11
+  title: Direct Connect レジリエンシ
+  text: AWS が **高可用性** を必要とするワークロード向けに推奨する Direct Connect 接続モデルは？
+  choices:
+    - 複数ロケーション・複数回線で動的ルーティングを利用
+    - 単一ロケーション・スタティックルート
+    - S3 経由転送
+    - VPN 併用のみ
+  answer: 複数ロケーション・複数回線で動的ルーティングを利用
+  explanation: 複数 DX ロケーション + BGP で経路自動フェイルオーバーを実現するのがレジリエンシ推奨です。 
+
+- id: 12
+  title: Direct Connect Gateway の利点
+  text: Direct Connect Gateway (DXGW) を使用する主なメリットは？
+  choices:
+    - 単一 DX 接続で世界中のリージョン VPC に接続できる
+    - NAT 料金が半額になる
+    - IPv6 が IPv4 に変換される
+    - 物理回線が不要
+  answer: 単一 DX 接続で世界中のリージョン VPC に接続できる
+  explanation: DXGW はリージョン非依存リソースで、クロスリージョン VIF ルーティングを提供します。 
+
+- id: 13
+  title: Global Accelerator と CloudFront
+  text: L4 Anycast ルーティングにより動的 TCP/UDP トラフィックのレイテンシを短縮するサービスは？
+  choices:
+    - AWS Global Accelerator
+    - Amazon CloudFront
+    - Route 53
+    - Network Load Balancer
+  answer: AWS Global Accelerator
+  explanation: Global Accelerator は静的 Anycast IP で TCP/UDP をエッジに吸収し、HTTP キャッシュ用途の CloudFront と役割が異なります。 
+
+- id: 14
+  title: Traffic Mirroring 制限
+  text: VPC Traffic Mirroring が **利用できない** インスタンス形態は？
+  choices:
+    - Bare-metal インスタンス
+    - Nitro 系 c6g インスタンス
+    - ENA Express 対応インスタンス
+    - GPU インスタンス p5
+  answer: Bare-metal インスタンス
+  explanation: Traffic Mirroring は bare-metal では未対応で、限定された非 Nitro 世代のみ対応します。 
+
+- id: 15
+  title: NAT Gateway スループット
+  text: 1 つの NAT Gateway が自動スケールする最大スループットは？
+  choices:
+    - 100 Gbps
+    - 10 Gbps
+    - 5 Gbps
+    - 無制限
+  answer: 100 Gbps
+  explanation: NAT Gateway は 5 Gbps から自動で最大 100 Gbps まで拡張します。 
+
+- id: 16
+  title: Flow Logs の action フィールド
+  text: VPC Flow Logs の **action** フィールドに取り得る代表的な値は？
+  choices:
+    - ACCEPT / REJECT
+    - ALLOW / DENY
+    - SUCCESS / FAIL
+    - PASS / DROP
+  answer: ACCEPT / REJECT
+  explanation: action はパケットがセキュリティグループや NACL により許可されたか否かを示す ACCEPT / REJECT を記録します。 
+
+- id: 17
+  title: Accelerated Site-to-Site VPN
+  text: Global Accelerator を活用して VPN の性能と可用性を高める機能は？
+  choices:
+    - Accelerated Site-to-Site VPN
+    - VPN CloudHub
+    - VPN Equal-Cost Multi-path
+    - IPv6 Static VPN
+  answer: Accelerated Site-to-Site VPN
+  explanation: Edge Anycast IP でトラフィックを AWS グローバルネットワークに早期収容し、レイテンシとフェイルオーバーを向上します。 
+
+- id: 18
+  title: Network Access Analyzer の目的
+  text: Network Access Analyzer が提供する主な価値は？
+  choices:
+    - 意図しないネットワークパスを特定しセキュリティ姿勢を改善する
+    - VPC 間転送料金を削減する
+    - ルートテーブルを自動生成する
+    - パケットキャプチャを実行する
+  answer: 意図しないネットワークパスを特定しセキュリティ姿勢を改善する
+  explanation: Network Access Analyzer は Access Scope で定義した要件に反する経路を静的解析で検出します。 
+
+- id: 19
+  title: Network Access Analyzer の解析方式
+  text: Network Access Analyzer がパケット送信を伴わず解析できる理由は？
+  choices:
+    - 自動推論 (Automated Reasoning) による静的解析を行うため
+    - VPC Flow Logs を常時収集しているため
+    - DNS クエリを送信しているため
+    - NetFlow エクスポートを行うため
+  answer: 自動推論 (Automated Reasoning) による静的解析を行うため
+  explanation: ネットワーク構成を数理モデル化し、パケットを流さず到達可能経路を証明します。 
+
+- id: 20
+  title: NAT Gateway の AZ 設計
+  text: 高可用性とスループット確保のため、AWS が推奨する NAT Gateway の配置は？
+  choices:
+    - 各 AZ ごとに 1 台ずつ配置する
+    - 最も安価な AZ に 1 台のみ置く
+    - パブリックサブネットなしで利用する
+    - 1 つの AZ に複数台重複配置はできない
+  answer: 各 AZ ごとに 1 台ずつ配置する
+  explanation: 各 AZ に NAT GW を設置し、AZ 障害時の依存とスループットボトルネックを回避する設計が推奨されます。 

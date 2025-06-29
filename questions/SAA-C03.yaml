@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Solutions Architect – Associate – SAA-C03
+  question_number: 5
+
+questions:
+- id: 1
+  title: RDS マルチ-AZ のフェイルオーバー
+  text: 単一リージョン内で高可用性を確保するために Amazon RDS で推奨される構成は？
+  choices:
+    - マルチ-AZ 配置
+    - リードレプリカのみ
+    - 単一 AZ ＋ 定期スナップショット
+    - クロスリージョンリードレプリカ
+  answer: マルチ-AZ 配置
+  explanation: マルチ-AZ はスタンバイ DB へ自動フェイルオーバーを提供し、ダウンタイムを最小化できます。 
+
+- id: 2
+  title: Route 53 レイテンシルーティング
+  text: 世界各地のユーザーに最も低遅延のエンドポイントを返す Route 53 のポリシーは？
+  choices:
+    - レイテンシーベースルーティング
+    - 加重ルーティング
+    - フェイルオーバールーティング
+    - 位置情報ルーティング
+  answer: レイテンシーベースルーティング
+  explanation: DNS クエリ元の位置と各リージョンの計測レイテンシを比較し、最小レイテンシのレコードを返します。 
+
+- id: 3
+  title: Auto Scaling のターゲット追跡
+  text: 平均 CPU 使用率 60 % を維持したい場合に最もシンプルなスケーリングポリシーは？
+  choices:
+    - ターゲット追跡スケーリング
+    - ステップスケーリング
+    - スケジュールスケーリング
+    - 手動スケーリング
+  answer: ターゲット追跡スケーリング
+  explanation: ターゲット追跡は指定メトリクスを継続的に追跡し、自動でスケールイン・アウトします。 
+
+- id: 4
+  title: S3 へのプライベートアクセス
+  text: VPC から S3 へインターネットゲートウェイを経由せず、追加料金なしでアクセスできる仕組みは？
+  choices:
+    - ゲートウェイエンドポイント
+    - インターフェイスエンドポイント
+    - NAT Gateway
+    - Direct Connect
+  answer: ゲートウェイエンドポイント
+  explanation: S3/DynamoDB 用のゲートウェイエンドポイントは通信料無料で VPC 内からプライベート経路を提供します。 
+
+- id: 5
+  title: CloudFront から S3 を保護
+  text: CloudFront 経由のみで S3 バケットにアクセスさせ、KMS 暗号化もサポートする最新推奨機能は？
+  choices:
+    - Origin Access Control (OAC)
+    - Origin Access Identity (OAI)
+    - サイニング URL
+    - CORS ポリシー
+  answer: Origin Access Control (OAC)
+  explanation: OAC は全リージョンと SSE-KMS をサポートし、OAI の後継として推奨されています。 
+
+- id: 6
+  title: DynamoDB グローバルテーブル
+  text: 多リージョンで読み書きでき、高可用性を確保する DynamoDB の機能は？
+  choices:
+    - グローバルテーブル
+    - オンデマンドバックアップ
+    - DynamoDB ストリーム
+    - パーティションキーの分散
+  answer: グローバルテーブル
+  explanation: グローバルテーブルはマルチリージョン・マルチアクティブで自動レプリケーションを提供します。 
+
+- id: 7
+  title: Aurora Global Database DR
+  text: Aurora Global Database でプライマリリージョン障害時に推奨されるフェイルオーバー方法は？
+  choices:
+    - マネージドフェイルオーバー
+    - 手動レプリカプロモーション
+    - 論理レプリケーションスロット
+    - 物理スナップショットコピー
+  answer: マネージドフェイルオーバー
+  explanation: Managed failover は RPO 数秒でセカンダリを昇格し、復旧後は自動で元構成に戻します。 
+
+- id: 8
+  title: VPC トランジティブルーティング
+  text: 複数 VPC をハブ＆スポーク接続し、トランジティブルーティングを実現する推奨サービスは？
+  choices:
+    - AWS Transit Gateway
+    - VPC ピアリング
+    - VPN CloudHub
+    - PrivateLink
+  answer: AWS Transit Gateway
+  explanation: Transit Gateway はクラウドルーターとして機能し、ピアリングのような 1:1 接続やトランジティブ制限を回避します。 
+
+- id: 9
+  title: S3 マルチパートアップロードの利点
+  text: マルチパートアップロードで**得られない**主な利点はどれですか？
+  choices:
+    - 大容量ファイルのスループット向上
+    - ネットワーク障害時のリカバリ容易化
+    - ストレージコストの即時割引
+    - アップロードの一時停止と再開
+  answer: ストレージコストの即時割引
+  explanation: マルチパートは性能と耐障害性を改善しますが、単独でコストを割引する機能ではありません。 
+
+- id: 10
+  title: マルチパート推奨サイズ
+  text: AWS 公式が「約 **○○ MB** 以上のオブジェクトならマルチパートを検討」と推奨する閾値は？
+  choices:
+    - 100 MB
+    - 16 MB
+    - 1 GB
+    - 5 TB
+  answer: 100 MB
+  explanation: 100 MB を超えるとマルチパートで並列アップロードの利点が顕著になります。 
+
+- id: 11
+  title: S3 パフォーマンス最適化
+  text: 同一バケットで書き込みパフォーマンスを水平拡張する最も簡単な方法は？
+  choices:
+    - 複数プレフィックスに並列書き込み
+    - 1 つの巨大プレフィックスを使用
+    - ライフサイクルで小分け
+    - バケットをリージョン間で分割
+  answer: 複数プレフィックスに並列書き込み
+  explanation: プレフィックスごとにスケールするため、10 プレフィックスなら書き込み性能も 10 倍近く伸びます。 
+
+- id: 12
+  title: RDS スタンバイの読み取り
+  text: RDS マルチ-AZ 配置のスタンバイインスタンスが通常提供**しない**ものは？
+  choices:
+    - 自動フェイルオーバー先
+    - 読み取りトラフィック処理
+    - 同期レプリケーション
+    - 障害発生時の復旧
+  answer: 読み取りトラフィック処理
+  explanation: スタンバイはフェイルオーバー専用で読み取りを受け付けません。 
+
+- id: 13
+  title: VPC ピアリングの制限
+  text: VPC ピアリングがサポート**しない**のは？
+  choices:
+    - トランジティブルーティング
+    - 同一リージョン接続
+    - ルートテーブルの CIDR 追加
+    - セキュリティグループ参照
+  answer: トランジティブルーティング
+  explanation: ピアリングは 1:1 接続で第三の VPC を経由した通信はできません。 
+
+- id: 14
+  title: Auto Scaling で可用性優先
+  text: ターゲット追跡ポリシーがスケールインを緩やかに行う設計目的は？
+  choices:
+    - 可用性維持を優先するため
+    - コスト最小化を優先するため
+    - 起動テンプレート更新を避けるため
+    - メトリクス取得コストを下げるため
+  answer: 可用性維持を優先するため
+  explanation: トラフィック減少時も急激に縮退せず、サービス継続性を保ちます。 
+
+- id: 15
+  title: S3 マルチパート最小パートサイズ
+  text: S3 マルチパートアップロードの各パートは最小 **5 MB** である。これはどのドキュメントで確認できますか？
+  choices:
+    - マルチパートアップロード API リファレンス
+    - EC2 ユーザーガイド
+    - VPC プライベートリンク概要
+    - Route 53 ドメインレジストラ
+  answer: マルチパートアップロード API リファレンス
+  explanation: API ドキュメントに 5 MB ～ 5 GB (最終パート例外) と明示されています。 
+
+- id: 16
+  title: Transit Gateway のメリット
+  text: メッシュ型ピアリングを避け、接続数の管理を簡素化できる TGW の構成は？
+  choices:
+    - ハブ＆スポーク
+    - フルメッシュ
+    - デイジーチェーン
+    - リング
+  answer: ハブ＆スポーク
+  explanation: 各 VPC がハブ TGW に 1 回アタッチするだけで済み、スケーラビリティと管理性が向上します。 
+
+- id: 17
+  title: CloudFront OAC と SSE-KMS
+  text: OAC が OAI と比較して提供する追加機能は？
+  choices:
+    - SSE-KMS 暗号化オブジェクトのサポート
+    - レイテンシーベースルーティング
+    - IAM ポリシーサイズの削減
+    - CloudFront Functions 自動生成
+  answer: SSE-KMS 暗号化オブジェクトのサポート
+  explanation: OAC は KMS で暗号化されたオブジェクトにも署名リクエストが可能です。 
+
+- id: 18
+  title: DynamoDB グローバルテーブルの整合性
+  text: グローバルテーブルでは各リージョンが読み書きできるが、アプリ開発者が留意すべき整合性モデルは？
+  choices:
+    - 最終的整合性
+    - 強力な整合性
+    - ローカルトランザクション整合性
+    - 同期 CP 整合性
+  answer: 最終的整合性
+  explanation: 書き込みが伝播するまで整合が取れないため、コンフリクト解決ロジックが必要です。 
+
+- id: 19
+  title: S3 マルチパートアップロードの最大オブジェクトサイズ
+  text: マルチパートアップロードでサポートされる単一オブジェクトの最大サイズは？
+  choices:
+    - 5 TB
+    - 1 TB
+    - 100 GB
+    - 15 TB
+  answer: 5 TB
+  explanation: マルチパートは 5 MB～5 TB のオブジェクトに対応します。 
+
+- id: 20
+  title: TGW ピアリング
+  text: 別リージョンの Transit Gateway 間を接続しトラフィックをルーティングする機能は？
+  choices:
+    - TGW ピアリングアタッチメント
+    - VPC ピアリング
+    - Direct Connect Gateway
+    - NAT ピアリング
+  answer: TGW ピアリングアタッチメント
+  explanation: ピアリングアタッチメントにより intra-Region / inter-Region で TGW 同士を接続できます。 

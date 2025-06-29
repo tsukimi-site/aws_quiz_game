@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Solutions Architect – Professional – SAP-C02
+  question_number: 4
+
+questions:
+- id: 1
+  title: Multi-Region Access Points の利点
+  text: Amazon S3 Multi-Region Access Points (MRAP) を使用する主な目的は何ですか？
+  choices:
+    - 単一のグローバルエンドポイントから地理的に最も近いバケットへ自動ルーティングする
+    - すべてのリージョン間で整合性を強制する
+    - バケット ACL を自動で作成する
+    - 転送中暗号化を不要にする
+  answer: 単一のグローバルエンドポイントから地理的に最も近いバケットへ自動ルーティングする
+  explanation: MRAP はアプリを 1 つのエンドポイントに向けるだけで、AWS Global Network 上で最適リージョンに接続します。 
+
+- id: 2
+  title: MRAP とレプリケーション
+  text: 別アカウント所有バケットへも MRAP でレプリケーションしたい場合に推奨される構成は？
+  choices:
+    - クロスアカウント MRAP でバケットを関連付ける
+    - CloudFront OAC を使う
+    - Transfer Acceleration を併用する
+    - Lambda でオブジェクトコピーを実装する
+  answer: クロスアカウント MRAP でバケットを関連付ける
+  explanation: MRAP はクロスアカウント構成をサポートし、アカウント分離した DR も実現できます。 
+
+- id: 3
+  title: S3 Replication Time Control SLA
+  text: S3 Replication Time Control (RTC) は 99.9 % のオブジェクトを **何分以内** にレプリケート完了する SLA を提供しますか？
+  choices:
+    - 15 分
+    - 60 分
+    - 4 時間
+    - 24 時間
+  answer: 15 分
+  explanation: RTC は 99.9 % のオブジェクトを 15 分以内に複製する SLA を持ち、監査要件に対応します。 
+
+- id: 4
+  title: Aurora Global Database の災害対策
+  text: Aurora Global Database で推奨される障害時フェイルオーバー方法は？
+  choices:
+    - マネージドフェイルオーバー (Managed failover)
+    - 手動でレプリカプロモーションのみ
+    - RDS EventBridge トリガー
+    - DMS でレプリケーション切替
+  answer: マネージドフェイルオーバー (Managed failover)
+  explanation: Managed failover は数十秒で昇格し、旧プライマリを自動でセカンダリに戻すため最小運用で復旧できます。 
+
+- id: 5
+  title: Aurora Global DB RPO
+  text: Aurora Global Database はリージョン障害時における目標復旧時点 (RPO) を通常どの程度に抑えられますか？
+  choices:
+    - 1 秒未満
+    - 5 分
+    - 1 時間
+    - デフォルトでは保証なし
+  answer: 1 秒未満
+  explanation: 書き込みをプライマリリージョンから 1 秒未満でセカンダリへ転送し、RPO ≈ 0 を実現します。 
+
+- id: 6
+  title: StackSets 自動デプロイ
+  text: AWS Organizations で新しいアカウントが OU に追加された際、自動で CloudFormation Stack を展開するには何を設定しますか？
+  choices:
+    - StackSets の「自動デプロイ」を有効化する
+    - Control Tower ライフサイクルイベントを無視する
+    - Service Catalog のポートフォリオ共有
+    - CloudTrail のイベントルール
+  answer: StackSets の「自動デプロイ」を有効化する
+  explanation: サービスマネージド権限の StackSets で Auto Deploy をオンにすると、新規アカウントに自動展開します。 
+
+- id: 7
+  title: Control Tower ライフサイクルイベント
+  text: 自動プロビジョニングパイプラインでアカウント作成後の追加設定を行う場合、Lambda でフックすべき Control Tower イベントは？
+  choices:
+    - CreateManagedAccount
+    - UpdateCompliance
+    - DeleteOU
+    - EnableRegion
+  answer: CreateManagedAccount
+  explanation: CreateManagedAccount イベントにより新規アカウントのガードレール適用完了を検知できます。 
+
+- id: 8
+  title: Transit Gateway 設計ベストプラクティス
+  text: Transit Gateway で各 VPC アタッチメントに推奨されるサブネット設計は？
+  choices:
+    - 各 AZ に /28 の専用サブネットを用意する
+    - 既存アプリサブネットを共有する
+    - /16 を割り当てる
+    - サブネットを作成しない
+  answer: 各 AZ に /28 の専用サブネットを用意する
+  explanation: 専用小 CIDR を使い、サブネット ACL をオープンに保つことが推奨されています。 
+
+- id: 9
+  title: TGW ルート分離
+  text: TGW ルートテーブルを分離しインフラ宛とアプリ宛を使い分ける主な利点は？
+  choices:
+    - トラフィック分離ときめ細かなセキュリティ制御
+    - コスト削減
+    - DNS レイテンシ削減
+    - インスタンス数削減
+  answer: トラフィック分離ときめ細かなセキュリティ制御
+  explanation: ルートテーブルを複数に分けることで部門間・方向別ポリシーを明確にできます。 
+
+- id: 10
+  title: Direct Connect SiteLink
+  text: Direct Connect SiteLink を利用する主なメリットは？
+  choices:
+    - AWS グローバルネットワーク経由で拠点間通信を高速化し、プライベート回線を簡素化
+    - DX 上限速度を 100 Gbps へ引き上げる
+    - NAT Gateway を不要にする
+    - IPv6 を IPv4 に変換する
+  answer: AWS グローバルネットワーク経由で拠点間通信を高速化し、プライベート回線を簡素化
+  explanation: SiteLink でオンプレ拠点同士を AWS ネットワークでメッシュ接続でき、帯域と遅延が改善します。 
+
+- id: 11
+  title: Elastic Disaster Recovery リソース効率
+  text: AWS Elastic Disaster Recovery (DRS) で **1** つの Replication Server が扱える最大ソースディスク数は？
+  choices:
+    - 15
+    - 5
+    - 1
+    - 32
+  answer: 15
+  explanation: DRS は Replication Server 1 台につき最大 15 ディスクを処理し、コストを抑えます。 
+
+- id: 12
+  title: AWS Backup クロスアカウント
+  text: 異なる AWS アカウントかつ別リージョンへバックアップコピーを自動化するために必要な設定は？
+  choices:
+    - 共有されたバックアップボルトとクロスアカウント IAM 権限
+    - VPC ピアリング
+    - DMS レプリケーションインスタンス
+    - Storage Gateway
+  answer: 共有されたバックアップボルトとクロスアカウント IAM 権限
+  explanation: クロスアカウントコピーではコピー先ボルトを共有し、ロールに `backup:CopyFromBackupVault` などを許可します。 
+
+- id: 13
+  title: AWS Config Conformance Packs
+  text: 組織単位 (OU) 全体へ一括でガバナンスルールをデプロイする推奨方法は？
+  choices:
+    - Organization Conformance Pack
+    - 個別アカウントに手動ルール作成
+    - クラウドトレイルのみ
+    - Amazon Inspector
+  answer: Organization Conformance Pack
+  explanation: Organization Conformance Pack は StackSets を利用して全アカウントにカスタム/マネージドルールを展開します。 
+
+- id: 14
+  title: MRAP ルーティングの前提
+  text: MRAP グローバルエンドポイントがリクエストを最適リージョンへルーティングする際に指標として参照するのは？
+  choices:
+    - AWS Global Accelerator のパフォーマンス計測
+    - クライアントの IP ジオロケーションのみ
+    - バケット名のハッシュ
+    - S3 RTC レイテンシ
+  answer: AWS Global Accelerator のパフォーマンス計測
+  explanation: MRAP は Global Accelerator のネットワーク測定データを活用して最短パスへルーティングします。 
+
+- id: 15
+  title: DRS 最適ディスク設定
+  text: DRS で「Auto」ディスク設定を選択すると得られる主な利点は？
+  choices:
+    - 最小限の Replication Server 数でコスト削減
+    - レプリケーション RPO が 0 になる
+    - 暗号化キーが不要
+    - 物理サーバーも対象にできる
+  answer: 最小限の Replication Server 数でコスト削減
+  explanation: Auto はディスク毎に最適化されるため必要最小の Replication Server を配置します。 
+
+- id: 16
+  title: TGW ピアリングアタッチメント
+  text: 別リージョンの Transit Gateway 間でルーティングを可能にする機能は？
+  choices:
+    - Transit Gateway ピアリングアタッチメント
+    - VPC ピアリング
+    - Direct Connect Gateway
+    - VPN CloudHub
+  answer: Transit Gateway ピアリングアタッチメント
+  explanation: ピアリングアタッチメントは同一・異なるリージョン TGW を直接接続し、Route Table で制御します。 
+
+- id: 17
+  title: StackSets 削除ポリシー
+  text: StackSets の自動デプロイ解除時にリソースを残す選択肢はどれですか？
+  choices:
+    - RETAIN スタック
+    - DELETE スタック
+    - SNAPSHOT スタック
+    - SUSPEND スタック
+  answer: RETAIN スタック
+  explanation: Auto Deploy 設定でアカウントが OU から外れた際、RETAIN を選ぶとスタック・リソースを残します。 
+
+- id: 18
+  title: Direct Connect パフォーマンス確保
+  text: ハイブリッド接続で予測可能な遅延とスループットを確保したい場合、AWS が推奨する接続オプションは？
+  choices:
+    - AWS Direct Connect
+    - インターネット VPN
+    - ロードバランサー経由
+    - SFTP
+  answer: AWS Direct Connect
+  explanation: Direct Connect は専用線で一定の帯域と低遅延を保証します。 
+
+- id: 19
+  title: S3 レプリケーションの必須要件
+  text: オブジェクトレプリケーション (CRR/SRR または RTC) を有効にする前に **必ず**両バケットで設定しておく必要があるのは？
+  choices:
+    - バージョニング
+    - オブジェクトロック
+    - プレフィックスルール
+    - ライフサイクルルール
+  answer: バージョニング
+  explanation: S3 レプリケーションはバージョニングが前提条件です。 
+
+- id: 20
+  title: Conformance Pack と StackSets 連携
+  text: Organization Conformance Pack をデプロイするとき、実際に各アカウントへスタックを作成するサービスは？
+  choices:
+    - AWS CloudFormation StackSets
+    - AWS Service Catalog
+    - AWS OpsWorks Stacks
+    - AWS Control Tower
+  answer: AWS CloudFormation StackSets
+  explanation: Organization Conformance Pack の裏側は管理型 StackSets によりルールスタックが広域配布されます。 

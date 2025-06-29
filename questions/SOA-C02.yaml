@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified SysOps Administrator – Associate – SOA-C02
+  question_number: 4
+
+questions:
+- id: 1
+  title: CloudWatch アラーム通知が届かない原因
+  text: CloudWatch アラームを SNS トピックへ紐付けたが通知メールが届かない。最も可能性の高い原因は？
+  choices:
+    - SNS トピックに購読 (Subscription) が存在しない
+    - CloudWatch Agent が未インストール
+    - SNS トピックの名前が長すぎる
+    - IAM ロールに `cloudwatch:PutMetricAlarm` が無い
+  answer: SNS トピックに購読 (Subscription) が存在しない
+  explanation: 通知はトピックに少なくとも 1 件の有効なサブスクリプションがないと配信されません。 
+
+- id: 2
+  title: Auto Scaling の ELB ヘルスチェック
+  text: Auto Scaling グループで ELB ヘルスチェックを有効にすると、インスタンスが Unhealthy と判定される主な情報源は？
+  choices:
+    - Elastic Load Balancing
+    - CloudTrail
+    - Route 53
+    - Systems Manager Agent
+  answer: Elastic Load Balancing
+  explanation: ELB が返すステータスを受け取り、異常と判断されたらインスタンスを置き換えます。 
+
+- id: 3
+  title: S3 Delete Marker の挙動
+  text: バージョニング有効バケットで `DeleteObject` を実行するとどうなりますか？
+  choices:
+    - Delete Marker が作成される
+    - オブジェクトが完全削除される
+    - ライフサイクルが自動停止する
+    - 404 エラーが返る
+  answer: Delete Marker が作成される
+  explanation: S3 はオブジェクトを残したまま Delete Marker を最新バージョンとして追加します。 
+
+- id: 4
+  title: RDS マルチ-AZ フェイルオーバー
+  text: RDS マルチ-AZ 配置で自動フェイルオーバーが発生する代表的な要因は？
+  choices:
+    - プライマリのネットワーク到達不能
+    - リードレプリカのスロークエリ
+    - CloudWatch アラーム無効化
+    - バックアップウィンドウ外の CPU スパイク
+  answer: プライマリのネットワーク到達不能
+  explanation: RDS はネットワーク障害などを検出するとスタンバイへ自動で切替えます。 
+
+- id: 5
+  title: EBS スナップショット削除のコスト
+  text: あるスナップショットを削除しても料金が下がらない場合がある理由は？
+  choices:
+    - 後続スナップショットが同じブロックを参照している
+    - 削除操作は 24 時間反映遅延がある
+    - 未使用でも 90 日は課金される
+    - スナップショットはリージョン課金のみ
+  answer: 後続スナップショットが同じブロックを参照している
+  explanation: 参照されているデータが残るためコストは次のスナップショットに移るだけです。 
+
+- id: 6
+  title: VPC ピアリングの制限
+  text: VPC ピアリングがサポート**しない**ものは？
+  choices:
+    - トランジティブルーティング
+    - 同一リージョン接続
+    - CIDR ルート追加
+    - セキュリティグループ参照
+  answer: トランジティブルーティング
+  explanation: ピアリングは 1:1 接続であり、経由した第三の VPC へは転送できません。 
+
+- id: 7
+  title: IAM ベストプラクティス
+  text: IAM ポリシー設計でまず意識すべき基本原則は？
+  choices:
+    - 最小権限
+    - ワイルドカード許可
+    - 同一ロールの共有
+    - パスワードポリシー無効化
+  answer: 最小権限
+  explanation: 余分なアクションやリソースを与えずタスクに必要な権限のみ付与します。 
+
+- id: 8
+  title: CloudTrail ログ完全性検証
+  text: CloudTrail ログが改ざんされていないことを確認する公式機能は？
+  choices:
+    - ログファイル検証
+    - CloudWatch ラムダフィルター
+    - KMS ローテーション
+    - Trusted Advisor
+  answer: ログファイル検証
+  explanation: SHA-256 & RSA 署名を使いログの改ざん有無を CLI で検証できます。 
+
+- id: 9
+  title: Session Manager の利点
+  text: Session Manager で EC2 に接続する際に**不要**なものは？
+  choices:
+    - インバウンド SSH ポート開放
+    - IAM 権限
+    - SSM Agent
+    - SSM エンドポイントへのアウトバウンド通信
+  answer: インバウンド SSH ポート開放
+  explanation: Session Manager はポート 22 を閉じたまま IAM + SSM Agent 経由で接続できます。 
+
+- id: 10
+  title: EBS 既定暗号化
+  text: 新規作成 EBS ボリュームを自動暗号化するにはどの設定を有効にしますか？
+  choices:
+    - Enable EBS encryption by default
+    - KMS キーの自動ローテーション
+    - EC2 キーペアの強制
+    - SSM パッチポリシー
+  answer: Enable EBS encryption by default
+  explanation: アカウント／リージョン単位で既定暗号化を有効にすると以降のボリュームは自動で暗号化されます。 
+
+- id: 11
+  title: パッチコンプライアンス確認
+  text: メンテナンスウィンドウでパッチ適用後、結果を確認できる Systems Manager の場所は？
+  choices:
+    - Patch Manager の Compliance reporting タブ
+    - CloudTrail
+    - Config ルール
+    - SNS ダッシュボード
+  answer: Patch Manager の Compliance reporting タブ
+  explanation: ウィンドウタスク後は Patch Manager でノードごとの適用状況を閲覧できます。 
+
+- id: 12
+  title: CloudWatch 異常検知アラーム
+  text: 異常検知アラームが静的しきい値を使わずに判定する基準は？
+  choices:
+    - 過去データから生成した期待値バンド
+    - 直近 5 分の平均値
+    - 固定の 80% 閾値
+    - 外部 SNS からの通知
+  answer: 過去データから生成した期待値バンド
+  explanation: ML モデルが季節性を考慮し期待レンジを算出し、逸脱でアラームを発報します。 
+
+- id: 13
+  title: S3 レプリケーションの前提条件
+  text: バケット間レプリケーションを有効にするため必須となる設定は？
+  choices:
+    - ソースと宛先両方のバージョニング有効化
+    - バケット ACL の完全公開
+    - S3 オブジェクトロック
+    - Transfer Acceleration
+  answer: ソースと宛先両方のバージョニング有効化
+  explanation: レプリケーションはバージョニングが前提条件として必須です。 
+
+- id: 14
+  title: Parameter Store SecureString
+  text: SecureString パラメータの暗号化に使われるサービスは？
+  choices:
+    - AWS KMS
+    - AWS Certificate Manager
+    - CloudHSM クラスタのみ
+    - Secrets Manager のみ
+  answer: AWS KMS
+  explanation: SecureString は KMS (既定 `aws/ssm` か CMK) を用いて保存時に暗号化されます。 
+
+- id: 15
+  title: AWS Backup クロスリージョンコピー
+  text: AWS Backup でバックアップを別リージョンへ自動コピーする主な用途は？
+  choices:
+    - 災害対策およびコンプライアンス
+    - スナップショットコスト削減
+    - VPC エンドポイント削減
+    - IAM ポリシー簡素化
+  answer: 災害対策およびコンプライアンス
+  explanation: リージョン障害対策や距離要件を満たすために遠隔地へコピーできます。 
+
+- id: 16
+  title: CloudFormation Drift Detection
+  text: Drift Detection で判定される「ドリフト」とはどの状態を指しますか？
+  choices:
+    - リソースがテンプレート定義と異なる設定になった
+    - スタックが停止中
+    - テンプレートにコメントがある
+    - Change Set が適用前
+  answer: リソースがテンプレート定義と異なる設定になった
+  explanation: 外部変更などで実リソースが期待値と差異を持つとドリフト状態になります。 
+
+- id: 17
+  title: Warm Pool の目的
+  text: Auto Scaling Warm Pool を導入する主なメリットは？
+  choices:
+    - 起動待ち時間の短縮
+    - IAM ロール数の削減
+    - AMI サイズ削減
+    - Spot 料金固定化
+  answer: 起動待ち時間の短縮
+  explanation: 事前初期化済みインスタンスをプールし、需要時に即時投入できます。 
+
+- id: 18
+  title: Lambda 予約コンカレンシーの制限
+  text: デフォルト 1,000 のアカウントコンカレンシーで、予約コンカレンシーを設定する際に必ず残す必要がある未予約枠は？
+  choices:
+    - 100
+    - 0
+    - 50
+    - 900
+  answer: 100
+  explanation: 少なくとも 100 を未予約プールに残す必要があり、超える設定は受け付けられません。 
+
+- id: 19
+  title: Auto Scaling のヘルスチェックソース
+  text: Auto Scaling がインスタンスの不健康判定を受け取れるソースに**含まれない**のは？
+  choices:
+    - AWS Lambda
+    - Amazon EC2
+    - Elastic Load Balancing
+    - カスタムヘルスチェック
+  answer: AWS Lambda
+  explanation: EC2、ELB、EBS、カスタムチェックなどがソースになり、Lambda とは連携しません。 
+
+- id: 20
+  title: Route 53 Health Check を無効化すると
+  text: Health Check を `Disabled` に設定した場合、Route 53 はそのリソースをどの状態として扱いますか？
+  choices:
+    - 常に Healthy
+    - 常に Unhealthy
+    - Insufficient Data
+    - 評価を停止し DNS から除外
+  answer: 常に Healthy
+  explanation: 無効化すると Route 53 はステータスを常に Healthy とみなし、フェイルオーバー先へ切替えません。 

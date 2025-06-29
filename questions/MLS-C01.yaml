@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Machine Learning – Specialty – MLS-C01
+  question_number: 4
+
+questions:
+- id: 1
+  title: SageMaker Processing のユースケース
+  text: SageMaker Processing ジョブが最も適しているタスクはどれですか？
+  choices:
+    - 前処理・後処理やバッチ推論をコンテナ化して実行する
+    - トレーニングジョブのハイパーパラメータ最適化
+    - 推論エンドポイントのオートスケーリング
+    - モデルの A/B テスト
+  answer: 前処理・後処理やバッチ推論をコンテナ化して実行する
+  explanation: Processing ジョブはワークロードを Docker コンテナで実行し、データ準備やバリデーション、バッチ推論に最適です。
+
+- id: 2
+  title: Data Wrangler のジョブ変換
+  text: Data Wrangler フローを本番パイプラインに組み込むベストプラクティスは？
+  choices:
+    - "`export_job_definition` で Processing ジョブとしてスケジュールする"
+    - Jupyter ノートブックに貼り付けて手動実行する
+    - Glue Job に直接貼り付ける
+    - CloudFormation テンプレートに埋め込む
+  answer: "`export_job_definition` で Processing ジョブとしてスケジュールする"
+  explanation: フローを Processing Job Definition としてエクスポートすれば、Pipelines やイベントスケジュールに組み込めます。
+
+- id: 3
+  title: Ground Truth アクティブラーニング
+  text: Auto-labeling が真価を発揮するのはどの状況ですか？
+  choices:
+    - ラベル作成コストを下げつつ精度を維持したい画像分類
+    - ラベル済みデータが十分にあるテキスト分類
+    - モデルデプロイのみ行いたい場合
+    - Web アプリの UI テスト
+  answer: ラベル作成コストを下げつつ精度を維持したい画像分類
+  explanation: Ground Truth はアクティブラーニングで難易度の低いサンプルを自動ラベル付けし、コストを 70 % 以上削減可能です。
+
+- id: 4
+  title: Clarify SHAP 値
+  text: SHAP 値が提供する主な洞察は？
+  choices:
+    - 個々の予測に対する特徴量寄与度
+    - データセットの行数
+    - GPU メモリ使用量
+    - 推論レイテンシ
+  answer: 個々の予測に対する特徴量寄与度
+  explanation: Clarify は SHAP を用い、各特徴が予測にどれだけ正・負に貢献したかを示します。
+
+- id: 5
+  title: Model Registry のバージョン管理
+  text: SageMaker Model Registry でモデルをプロダクションへ昇格する操作は？
+  choices:
+    - ModelPackage のステージを `Approved` に変更
+    - モデルを直接 S3 にアップロード
+    - ECR タグを書き換える
+    - CloudWatch アラームを無効化
+  answer: ModelPackage のステージを `Approved` に変更
+  explanation: Registry では `Pending → Approved` の昇格で CI/CD がトリガーされるのが一般的パターンです.
+
+- id: 6
+  title: SageMaker Feature Store 同期動作
+  text: オンラインストアに書き込んだデータはどうなる？
+  choices:
+    - 自動的にオフラインストアへも非同期複製される
+    - 同期されず別途パイプラインが必要
+    - Glacier にアーカイブされる
+    - 削除される
+  answer: 自動的にオフラインストアへも非同期複製される
+  explanation: オンライン／オフライン併用時はバックグラウンドで整合性を維持します。
+
+- id: 7
+  title: Pipelines 失敗時の再実行
+  text: 途中失敗した Pipeline をコスト効率よくやり直す推奨方法は？
+  choices:
+    - キャッシュメカニズムを有効にし、成功済みステップをスキップ
+    - すべてのステップを強制再実行
+    - "`stop_pipeline` で削除して最初から作り直す"
+    - CloudFormation でスタックを削除
+  answer: キャッシュメカニズムを有効にし、成功済みステップをスキップ
+  explanation: ステップキャッシュにより成功済みコンテナ出力を再利用し、不要な再計算を防ぎます。
+
+- id: 8
+  title: Managed Spot Training のチェックポイント
+  text: Spot 中断で途中学習を再開するために推奨されるパターンは？
+  choices:
+    - CheckpointConfig で S3 パスを指定
+    - EBS ジャーナリングを無効化
+    - Local Mode を使用
+    - Pipe モードをオフにする
+  answer: CheckpointConfig で S3 パスを指定
+  explanation: 中断時に自動で S3 へスナップショットが保存され、再開時に読み込まれます。
+
+- id: 9
+  title: Hyperparameter Tuning Early Stopping
+  text: HPO で `EarlyStoppingType=Auto` を設定するとどうなりますか？
+  choices:
+    - 成績の悪いトライアルが自動終了しコストが削減される
+    - 全トライアルが必ず最後まで走る
+    - HPO ジョブが失敗する
+    - Spot インスタンスしか使用できない
+  answer: 成績の悪いトライアルが自動終了しコストが削減される
+  explanation: Auto では一定エポック時点のメトリクスで将来パフォーマンスを推定し、望み薄なジョブを停止します。
+
+- id: 10
+  title: Batch Transform の利点
+  text: サーバーレスエンドポイントではなく Batch Transform が適するケースは？
+  choices:
+    - 数百万レコードの非リアルタイム推論
+    - 低レイテンシ (<50 ms) 要件
+    - ステートフル推論
+    - エッジデバイス推論
+  answer: 数百万レコードの非リアルタイム推論
+  explanation: Batch Transform はスループット最優先でオンデマンドクラスターを起動し、大規模バッチを高速処理します.
+
+- id: 11
+  title: Multi-Model Endpoint のロード挙動
+  text: 初回リクエスト時のモデルロードによって発生するのは？
+  choices:
+    - コールドスタート遅延
+    - 推論失敗
+    - メモリ解放
+    - GPU 割り当て解除
+  answer: コールドスタート遅延
+  explanation: MME は S3 からモデルをロードするので最初の呼び出し時に追加レイテンシが発生します。
+
+- id: 12
+  title: Neo コンパイルオブジェクト
+  text: Neo コンパイラに渡す必要がある入力は？
+  choices:
+    - Trained model artifacts (e.g., .tar.gz) とターゲットハードウェア
+    - 未学習データセット
+    - Feature Store
+    - Glue Crawler
+  answer: Trained model artifacts (e.g., .tar.gz) とターゲットハードウェア
+  explanation: コンパイルはモデルとデバイスプロファイルに基づき命令を最適化します。
+
+- id: 13
+  title: Clarify データセット統計
+  text: Pre-training バイアス分析で生成される `analysis.json` に含まれない情報は？
+  choices:
+    - 予測確率
+    - カテゴリ別カウント
+    - 欠損値割合
+    - バイアス指標
+  answer: 予測確率
+  explanation: 学習前なので予測は存在しません。
+
+- id: 14
+  title: Debugger Rule の `VanishingGradient`
+  text: "`VanishingGradient` ルールが `IssuesFound` を返した場合の推奨対処は？"
+  choices:
+    - 学習率を上げるか活性化関数を変更する
+    - すぐに推論エンドポイントをデプロイする
+    - 出力層を削除する
+    - SHAP 解析を行う
+  answer: 学習率を上げるか活性化関数を変更する
+  explanation: 勾配消失が発生しており、ハイパーパラメータやネットワーク構造を見直す必要があります。
+
+- id: 15
+  title: Serverless Inference 最大メモリ
+  text: 現時点で Serverless Inference がサポートする最大メモリサイズは？
+  choices:
+    - 6144 MB
+    - 4096 MB
+    - 10240 MB
+    - 128 MB
+  answer: 6144 MB
+  explanation: 128–6144 MB の範囲を 1 MB 刻みで指定できます（2025-06 時点）。
+
+- id: 16
+  title: SageMaker Experiments
+  text: Experiments が主に提供する機能は？
+  choices:
+    - 実験のパラメータ・メトリクス・成果物の系統管理
+    - GPU 使用率の強制
+    - Endpoint 自動スケール
+    - IAM ロール自動発行
+  answer: 実験のパラメータ・メトリクス・成果物の系統管理
+  explanation: Trial, TrialComponent を使い ML 実験を体系的に追跡できます。
+
+- id: 17
+  title: Clarify バイアス指標
+  text: Demographic Parity はどのようなバイアス指標ですか？
+  choices:
+    - 予測陽性率がグループ間で等しいか
+    - 真陽性率の差
+    - 偽陽性率の差
+    - 説明変数の分散
+  answer: 予測陽性率がグループ間で等しいか
+  explanation: Demographic Parity (Statistical Parity) は保護属性ごとの予測陽性率を比較します。
+
+- id: 18
+  title: Shadow Deployment メトリクス
+  text: Shadow テスト中に新旧モデルを比較するために CloudWatch カスタムメトリクスで **最も** 追跡すべきものは？
+  choices:
+    - 推論レイテンシと業務 KPI (例: CVR)
+    - ECR プル数
+    - VPC フローログ
+    - Lambda エラー数
+  answer: 推論レイテンシと業務 KPI (例： CVR)
+  explanation: レイテンシ悪化や性能指標低下がないかを確認することで安全に昇格可否を判断できます.
+
+- id: 19
+  title: JumpStart 基盤モデル
+  text: JumpStart で基盤モデルをカスタムデータで微調整 (Fine-tune) する際の制約は？
+  choices:
+    - モデルごとに指定フォーマットのデータセットを S3 に用意する必要がある
+    - 追加ライセンス料金が必須
+    - GPU インスタンスでは実行不可
+    - オンプレからは呼び出せない
+  answer: モデルごとに指定フォーマットのデータセットを S3 に用意する必要がある
+  explanation: Fine-tune テンプレートはモデルに応じて JSONL や CSV など決まったフォーマットを要求します.
+
+- id: 20
+  title: SageMaker Canvas のユースケース
+  text: Canvas が最も価値を発揮するユーザー層は？
+  choices:
+    - コーディング不要で ML 予測したいビジネスアナリスト
+    - HPC エンジニア
+    - ネットワーク管理者
+    - ゲーム開発者
+  answer: コーディング不要で ML 予測したいビジネスアナリスト
+  explanation: ノーコード UI で AutoML を実行し、SageMaker Studio へハンドオフも可能です。

@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Data Engineer – Associate – DEA-C01
+  question_number: 4
+
+questions:
+- id: 1
+  title: Lake Formation の 2 段階認可
+  text: Lake Formation でデータにアクセスする際、**必ず**通過しなければならない権限制御の組み合わせは？
+  choices:
+    - IAM 権限 **と** Lake Formation 権限の両方
+    - IAM 権限のみ
+    - Lake Formation 権限のみ
+    - S3 バケットポリシーのみ
+  answer: IAM 権限 **と** Lake Formation 権限の両方
+  explanation: リクエストは IAM と Lake Formation の二重チェックを通過する必要があります。 
+
+- id: 2
+  title: Lake Formation 権限カテゴリ
+  text: Lake Formation 権限モデルで「メタデータアクセス権限」が付与対象とするリソースは？
+  choices:
+    - AWS Glue Data Catalog のデータベースとテーブル
+    - S3 オブジェクトの暗号化キー
+    - IAM ロール
+    - EC2 インスタンス
+  answer: AWS Glue Data Catalog のデータベースとテーブル
+  explanation: メタデータアクセス権限は Data Catalog 内の DB・テーブルの作成や SELECT 等を制御します。 
+
+- id: 3
+  title: LF-Tags の用途
+  text: 複数テーブルにまたがる動的なアクセス制御を簡素化する Lake Formation 機能は？
+  choices:
+    - LF-Tags によるタグベースアクセス制御
+    - S3 ライフサイクルルール
+    - IAM Permission Boundaries
+    - GuardDuty Findings
+  answer: LF-Tags によるタグベースアクセス制御
+  explanation: LF-Tags を利用するとタグを付与したリソース集合に一括で権限を与えられます。 
+
+- id: 4
+  title: Glue Job Bookmark の目的
+  text: Glue ジョブで「Job Bookmark」を有効化すると得られる主な効果は？
+  choices:
+    - 既に処理済みデータの再処理を防止できる
+    - Spark ワーカー数が自動で増える
+    - データカタログが自動作成される
+    - IAM ロールが不要になる
+  answer: 既に処理済みデータの再処理を防止できる
+  explanation: Job Bookmark は前回の実行状態を保持し、差分のみを処理します。 
+
+- id: 5
+  title: Glue Job Bookmark の構成要素
+  text: Job Bookmark が保持する情報に**含まれない**のは？
+  choices:
+    - ソース読み取り位置
+    - 変換ステップの状態
+    - ターゲットへの書き込みコミット位置
+    - CloudTrail Trail 名称
+  answer: CloudTrail Trail 名称
+  explanation: Bookmark はソース・変換・ターゲットのステートを保持しますが Trail 名は保持しません。 
+
+- id: 6
+  title: Glue Blueprints & Workflows
+  text: データベーススナップショット取り込みなど複数ジョブをまとめて自動生成する Glue 機能は？
+  choices:
+    - Glue Blueprint から生成される Workflow
+    - Dev Endpoint
+    - Trigger だけの連鎖
+    - DataBrew レシピ
+  answer: Glue Blueprint から生成される Workflow
+  explanation: Blueprint はパラメータを指定して Crawler・Job・Trigger を含む Workflow を一括生成します。 
+
+- id: 7
+  title: Athena Partition Projection
+  text: Partition Projection を有効にすると得られる主な利点は？
+  choices:
+    - パーティションメタデータ API 呼び出しを省略しクエリ計画を高速化
+    - テーブルサイズが自動で縮小
+    - クエリ結果を自動キャッシュ
+    - Glue Crawler が必須になる
+  answer: パーティションメタデータ API 呼び出しを省略しクエリ計画を高速化
+  explanation: Projection はカタログ参照をスキップし、数千パーティションでも高速・低コストです。 
+
+- id: 8
+  title: Partition Projection が不要にする運用
+  text: Projection を使うことで**不要**になることは？
+  choices:
+    - 新規パーティションを Glue Crawler で追加登録
+    - Parquet 変換
+    - S3 バケット暗号化
+    - IAM ロール作成
+  answer: 新規パーティションを Glue Crawler で追加登録
+  explanation: Projection は S3 パスパターンから動的にパーティションを推測するため、カタログ更新が不要です。 
+
+- id: 9
+  title: Redshift Concurrency Scaling
+  text: 同時実行クエリが急増した際、**自動でクラスター容量を追加**して性能を保つ機能は？
+  choices:
+    - Concurrency Scaling
+    - Enhanced VPC Routing
+    - AQUA
+    - Spectrum
+  answer: Concurrency Scaling
+  explanation: Concurrency Scaling は数千ユーザーを高速クエリで処理できるよう一時クラスターを自動付与します。 
+
+- id: 10
+  title: Redshift RA3 の特徴
+  text: RA3 ノードが従来ノードと比較して提供する最大のアーキテクチャ的利点は？
+  choices:
+    - コンピュートとストレージを独立してスケールできる
+    - SSD のみ使用
+    - マスター/スレーブ構成
+    - JDBC 接続不要
+  answer: コンピュートとストレージを独立してスケールできる
+  explanation: RA3 は Managed Storage を用い、計算リソースと分離課金されます。 
+
+- id: 11
+  title: Redshift Spectrum の用途
+  text: Redshift Spectrum を利用すると実現できることは？
+  choices:
+    - S3 上のデータを Redshift へロードせず直接クエリ
+    - Redshift クラスターを停止
+    - DynamoDB への外部テーブル作成
+    - EMR クラスター自動生成
+  answer: S3 上のデータを Redshift へロードせず直接クエリ
+  explanation: Spectrum は外部テーブルを作成し、エクサバイト級 S3 データをインプレース分析します。 
+
+- id: 12
+  title: Redshift Serverless スケーリング
+  text: Redshift Serverless がワークロードに応じて自動調整する主なリソースは？
+  choices:
+    - RPU (Redshift Processing Units)
+    - IAM ポリシー
+    - KMS キー
+    - VPC エンドポイント数
+  answer: RPU (Redshift Processing Units)
+  explanation: Serverless は AI で RPU を自動スケールし、価格とパフォーマンスをスライダーで調整できます。 
+
+- id: 13
+  title: Kinesis Data Firehose 変換
+  text: Firehose でデータ変換を有効にすると、ストリームはどのサービスを呼び出しますか？
+  choices:
+    - AWS Lambda
+    - Amazon EMR
+    - Redshift Spectrum
+    - MSK Connect
+  answer: AWS Lambda
+  explanation: Firehose は受信バッチを Lambda 関数に渡し、戻り値を宛先へ配送します。 
+
+- id: 14
+  title: MSK Serverless の課金モデル
+  text: Amazon MSK Serverless でユーザーが支払う主な課金単位は？
+  choices:
+    - 送信・保管データ量に基づく従量課金
+    - プロビジョニングしたブローカー数
+    - EC2 インスタンス時間
+    - VPC エンドポイント数
+  answer: 送信・保管データ量に基づく従量課金
+  explanation: MSK Serverless はブローカー容量を自動スケールし、ストリームされたバイト数などで課金されます。 
+
+- id: 15
+  title: Lake Formation Workflow の実行単位
+  text: Workflow 全体の実行結果を 1 つのエンティティとして追跡できる理由は？
+  choices:
+    - Workflow が各ジョブ・クローラーをまとめた単一単位として管理されるから
+    - 各 Glue Job に個別 IAM ロールがあるから
+    - CloudWatch Dashboard が自動生成されるから
+    - S3 イベント通知でジョブ完了を検知するから
+  answer: Workflow が各ジョブ・クローラーをまとめた単一単位として管理されるから
+  explanation: Lake Formation は Blueprint 生成の Workflow を 1 つのジョブセットとしてスケジューリング・監視します。 
+
+- id: 16
+  title: Athena Projection の注意点
+  text: Partition Projection テーブルで「スパーステーブル」の場合に発生しうる問題は？
+  choices:
+    - 存在しないパーティションまで S3 をスキャンしクエリが遅くなる
+    - Glue Data Catalog がロックされる
+    - Parquet 変換が強制される
+    - クエリは失敗し実行できない
+  answer: 存在しないパーティションまで S3 をスキャンしクエリが遅くなる
+  explanation: スパーステーブルでは Projection が想定するすべてのパスを確認するため無駄なリストが発生します。 
+
+- id: 17
+  title: Redshift Concurrency Scaling の課金
+  text: Concurrency Scaling 使用量の無料クレジットはどのように計算されますか？
+  choices:
+    - メインクラスターの使用時間に比例
+    - 常に 1 時間/日
+    - 常に無料
+    - クエリ件数に比例
+  answer: メインクラスターの使用時間に比例
+  explanation: 各 RA3/DC2 使用時間に対し一定比率の Concurrency Scaling クレジットが付与されます。 
+
+- id: 18
+  title: RA3 Managed Storage のデータ配置
+  text: 未使用ブロックが自動で S3 ベースのストレージにオフロードされる動作はどの機能によるものですか？
+  choices:
+    - Managed Storage
+    - Spectrum
+    - Snapshot Copy
+    - WLM
+  answer: Managed Storage
+  explanation: RA3 はディスクキャッシュ＋S3 ストレージを自動階層化し、コストを最適化します。 
+
+- id: 19
+  title: Firehose 変換の失敗ハンドリング
+  text: Lambda 変換が失敗したレコードをエラーデータ配信先へルーティングする機能は？
+  choices:
+    - ProcessingConfiguration の RetryOptions + BackupMode
+    - Kinesis Client Library
+    - CloudWatch Logs Subscription
+    - EMRFS Consistency View
+  answer: ProcessingConfiguration の RetryOptions + BackupMode
+  explanation: 最大 3 回再試行後、失敗レコードを S3 などのバックアップ先へ送れます。 
+
+- id: 20
+  title: MSK Serverless のスループット制限
+  text: MSK Serverless で現在公開されている**1 ストリームあたりの最大スループット**は？
+  choices:
+    - 200 MiB/s
+    - 1,000 MiB/s
+    - 50 MiB/s
+    - 無制限
+  answer: 200 MiB/s
+  explanation: MSK Serverless は各ストリーム最大 200 MiB/s・50,000 パーティションをサポートします (2025 年 6 月時点)。 

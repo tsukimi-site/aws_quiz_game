@@ -1,0 +1,224 @@
+course_detail:
+  title: AWS Certified Developer – Associate – DVA-C02
+  question_number: 4
+
+questions:
+- id: 1
+  title: プロビジョンドコンカレンシーの効果
+  text: AWS Lambda でプロビジョンドコンカレンシーを有効化すると得られる主な利点はどれですか？
+  choices:
+    - コールドスタートのレイテンシ削減
+    - 同時実行上限の増加
+    - デプロイパッケージサイズの削減
+    - 実行タイムアウトの延長
+  answer: コールドスタートのレイテンシ削減
+  explanation: プロビジョンドコンカレンシーは事前初期化済み環境を確保し、ダブル‐デジットミリ秒の応答を実現します。 
+
+- id: 2
+  title: 予約コンカレンシーの目的
+  text: ある関数だけが必要な同時実行数を常に確保し、他の関数に影響を与えないようにしたい。設定すべきオプションは？
+  choices:
+    - 予約コンカレンシー
+    - バッチサイズ
+    - オートスケーリンググループ
+    - 処理バッチウィンドウ
+  answer: 予約コンカレンシー
+  explanation: 予約コンカレンシーを設定すると、その関数用に最小・最大同時実行数を専有できます。 
+
+- id: 3
+  title: Lambda Layers の利点
+  text: Lambda Layers を使用することで得られる典型的なメリットは？
+  choices:
+    - 依存ライブラリを複数関数で共有しデプロイパッケージを軽量化できる
+    - 実行タイムアウトを 30 分以上に延長できる
+    - VPC 内 ENI 作成時間を短縮できる
+    - プロビジョンドコンカレンシーを自動設定できる
+  answer: 依存ライブラリを複数関数で共有しデプロイパッケージを軽量化できる
+  explanation: Layers はライブラリや共通コードを切り出して再利用し、パッケージサイズ・更新回数を削減します。 
+
+- id: 4
+  title: Lambda の DLQ 送信先
+  text: Lambda 関数が再試行後も処理できないイベントを自動転送できる先は？
+  choices:
+    - SQS キューまたは SNS トピック
+    - Amazon Kinesis Data Stream
+    - CloudWatch Logs
+    - Amazon S3
+  answer: SQS キューまたは SNS トピック
+  explanation: Lambda は Dead-Letter Queue として SQS/SNS をサポートし、失敗イベントを保存できます。 
+
+- id: 5
+  title: X-Ray Active トレーシング
+  text: Lambda 関数で「Active トレーシング」を有効化した場合の動作として正しいものは？
+  choices:
+    - Lambda が自動でトレースセグメントを作成し X-Ray に送信する
+    - X-Ray エージェントを手動でインストールする必要がある
+    - HTTP ヘッダーに明示的な Trace ID を付与する必要がある
+    - 追加 IAM 権限は不要
+  answer: Lambda が自動でトレースセグメントを作成し X-Ray に送信する
+  explanation: Active トレーシングでは Lambda サービスがセグメントを生成し、実行ロールに書き込み権限を自動付与します。 
+
+- id: 6
+  title: API Gateway ステージキャッシュ
+  text: REST API ステージでキャッシュを有効化した場合のデフォルト TTL は？
+  choices:
+    - 300 秒
+    - 60 秒
+    - 600 秒
+    - 0 秒
+  answer: 300 秒
+  explanation: API Gateway のデフォルト TTL は 300 秒 (5 分) で、0 に設定するとキャッシュ無効化となります。 
+
+- id: 7
+  title: API Gateway スロットリング
+  text: バースト制限とは API Gateway がどのような状況で適用する値ですか？
+  choices:
+    - 短時間に同時到達したリクエスト数の上限
+    - 月間総リクエスト数の上限
+    - レスポンスサイズの上限
+    - ステージキャッシュサイズの上限
+  answer: 短時間に同時到達したリクエスト数の上限
+  explanation: バースト制限は瞬間的なリクエスト急増をバケット方式で制御し、429 を返してバックオフさせます。 
+
+- id: 8
+  title: DynamoDB TransactWriteItems 上限
+  text: TransactWriteItems で 1 回のトランザクションに含められる最大アクション数は？
+  choices:
+    - 100
+    - 25
+    - 500
+    - 10
+  answer: 100
+  explanation: 最大 100 アクション・合計 4 MB を 1 つの ACID トランザクションとして実行できます。 
+
+- id: 9
+  title: DynamoDB トランザクションの特性
+  text: TransactWriteItems が「冪等」(idempotent) とされる理由は？
+  choices:
+    - クライアントが同一リクエストを再送しても 2 回目以降は処理されない
+    - 書き込みは最終的整合性になる
+    - 各アクションが部分的に成功する
+    - 10 秒以内に必ず完了する
+  answer: クライアントが同一リクエストを再送しても 2 回目以降は処理されない
+  explanation: トランザクション ID を含むため再試行しても重複実行されず、一貫した結果が得られます。 
+
+- id: 10
+  title: CodeBuild の特徴
+  text: AWS CodeBuild を利用すると開発者が不要になる運用タスクは？
+  choices:
+    - ビルドサーバーのプロビジョニングとスケーリング
+    - ソースコード管理
+    - コンテナイメージの署名
+    - CloudFormation テンプレートの検証
+  answer: ビルドサーバーのプロビジョニングとスケーリング
+  explanation: CodeBuild はフルマネージドでビルド環境を動的に起動し、並列ビルドも自動スケールします。 
+
+- id: 11
+  title: Step Functions Callback パターン
+  text: ヒトタスクや外部バッチ完了をトークンで待機するステートマシン構築に推奨されるパターンは？
+  choices:
+    - Callback パターン (Task Token)
+    - Map 並列パターン
+    - Wait (固定時間)
+    - Parallel 状態
+  answer: Callback パターン (Task Token)
+  explanation: Task Token を発行し最大 1 年間待機でき、外部システム完了時に SendTaskSuccess を呼び出します。 
+
+- id: 12
+  title: SQS FIFO の重複排除
+  text: FIFO キューで **重複排除ウィンドウ** がデフォルトで適用される時間は？
+  choices:
+    - 5 分
+    - 1 分
+    - 12 時間
+    - 0 秒
+  answer: 5 分
+  explanation: 同一メッセージ ID を 5 分以内に再送しても重複は許可されず、Exactly-Once を実現します。 
+
+- id: 13
+  title: SQS メッセージの最大 Visibility Timeout
+  text: SQS メッセージの Visibility Timeout が延長できる上限は？
+  choices:
+    - 12 時間
+    - 6 時間
+    - 24 時間
+    - 7 日
+  answer: 12 時間
+  explanation: Visibility Timeout は受信時点から最大 12 時間までしか延長できません。 
+
+- id: 14
+  title: EventBridge リトライポリシー (デフォルト)
+  text: EventBridge がターゲットへの配信に失敗した場合、デフォルトでは最大何時間リトライしますか？
+  choices:
+    - 24 時間
+    - 1 時間
+    - 48 時間
+    - リトライしない
+  answer: 24 時間
+  explanation: デフォルトで 24 時間・最大 185 回、指数バックオフとジッターで再試行します。 
+
+- id: 15
+  title: EventBridge スキーマレジストリ
+  text: EventBridge スキーマレジストリの主なメリットはどれですか？
+  choices:
+    - イベント構造を定義しコードバインディングを自動生成できる
+    - イベントを永続保存する
+    - 送信失敗イベントを再試行する
+    - クロスリージョンイベントレプリケーションを行う
+  answer: イベント構造を定義しコードバインディングを自動生成できる
+  explanation: レジストリは AWS/カスタム/検出済みスキーマを管理し、Java、Python などのコードバインディングをダウンロードできます。 
+
+- id: 16
+  title: アカウント同時実行デフォルト
+  text: 1 リージョンあたりデフォルトでアカウントに割り当てられる Lambda 同時実行上限は？
+  choices:
+    - 1,000
+    - 100
+    - 5,000
+    - 無制限
+  answer: 1,000
+  explanation: デフォルト上限は 1,000 で、サービスクォータをリクエストして増加可能です。 
+
+- id: 17
+  title: API Gateway キャッシュの効果
+  text: ステージキャッシュを有効にすると主にどのリソースが節約されますか？
+  choices:
+    - バックエンドの呼び出し回数
+    - Lambda 実行時間
+    - IAM ポリシーサイズ
+    - RDS ストレージ
+  answer: バックエンドの呼び出し回数
+  explanation: キャッシュヒット時は API Gateway がレスポンスを返し、オリジンサービスへのリクエストを削減します。 
+
+- id: 18
+  title: SQS Dead-Letter Queue の用途
+  text: SQS で DLQ を設定する主目的は？
+  choices:
+    - 何度も処理に失敗するメッセージを分離して保管する
+    - メッセージを暗号化する
+    - メッセージを順序付けて配信する
+    - リアルタイムストリーミングを実現する
+  answer: 何度も処理に失敗するメッセージを分離して保管する
+  explanation: DLQ は最大受信回数を超えたメッセージを隔離し、後続分析・再処理を容易にします。 
+
+- id: 19
+  title: Visibility Timeout 延長時の注意
+  text: ChangeMessageVisibility で Visibility Timeout を延長しても **リセットされない** 制限は？
+  choices:
+    - 受信から 12 時間の上限
+    - 最大受信回数
+    - キューの保存期間
+    - メッセージサイズ
+  answer: 受信から 12 時間の上限
+  explanation: Timeout を延長しても 12 時間の総上限は変わらず、その後メッセージが再表示されます。 
+
+- id: 20
+  title: Lambda レイヤーの共有
+  text: 別 AWS アカウントにレイヤーを共有する方法として正しいのは？
+  choices:
+    - レイヤーバージョンのリソースベースポリシーに `add-layer-version-permission` を実行する
+    - レイヤー ARN を直接渡すだけでアクセス可能
+    - S3 バケットポリシーを更新する
+    - API Gateway ステージ変数を編集する
+  answer: レイヤーバージョンのリソースベースポリシーに `add-layer-version-permission` を実行する
+  explanation: クロスアカウント共有はレイヤーごとに権限付与コマンドで Principal を追加して行います。 
